@@ -1,8 +1,8 @@
 ---
 name: sales-enablement
-description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,' 'battlecard,' 'competitive one-pager,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see competitors. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
+description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,' 'battlecard,' 'competitive one-pager,' 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond to this objection,' 'prospect just said,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see competitors. For running buyer interviews or churn research, see customer-research. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
 metadata:
-  version: 2.2.0
+  version: 2.3.0
 ---
 
 # Sales Enablement
@@ -54,7 +54,7 @@ Every claim connects to revenue, efficiency, or risk reduction. Features mean no
 
 ### Claims Reps Can Defend
 Reps repeat what you write to buyers who can check it. Anything a buyer can disprove in a minute costs more than it gains.
-- **"Why we win" needs evidence**: win/loss notes, CRM loss reasons, call recordings, or customer quotes. Without it, write advantages as hypotheses for reps to test, and say what evidence would confirm them.
+- **"Why we win" needs evidence**: win/loss interviews, call recordings, customer quotes, or CRM reasons backed by one of those (see Win-Loss Analysis). Without it, write advantages as hypotheses for reps to test, and say what evidence would confirm them.
 - **Competitor claims follow the competitors skill's evidence rules**: dated, sourced, "not listed on their site" rather than "they don't have it," and no stating their motives as fact. Reps can reason about why a competitor did something, labeled as a guess.
 - **Include where you lose.** A competitive doc that admits when the competitor is the better fit is one reps will trust in front of a buyer.
 
@@ -151,6 +151,18 @@ For each objection, document:
 
 **For the full objection library**: See [references/objection-library.md](references/objection-library.md)
 
+### Live Deal Objection
+
+When a rep brings one objection from a live deal ("the CFO just said Acme is half the price, I have a call in an hour"), answer that deal. Don't hand back a generic doc.
+
+1. **Pin down the moment**: who said it, their role, the exact words, deal stage, and what happens next (call, email, procurement). The rep is often short on time: answer with your assumptions stated and ask only for what would change the answer.
+2. **Name the likely concern behind it** and say what in the deal points to it. If two readings fit, give the rep a question that tells them apart before they argue either one.
+3. **Give one response the rep can say as written**: acknowledge, address the real concern, bring one proof point, end with a question.
+4. **Use only proof the rep can stand behind.** Pull from the objection library, case studies, and battle cards. If nothing fits, say so and suggest the claim to verify. Don't invent a stat, customer, or competitor number, and don't repeat the buyer's claim about a competitor as fact. "Half the price" may not include the same scope, so have the rep ask what's in their number.
+5. **Say when not to fight.** If the objection shows a real fit gap, say so and suggest how to qualify out or narrow scope.
+
+Afterward, suggest the rep log the objection and how it went. Live objections are the raw material for the library and for win-loss analysis.
+
 ---
 
 ## Battle Cards
@@ -176,7 +188,24 @@ A battle card is a reusable one-competitor guide for reps, used across many deal
 - Tag every competitor fact with its source and date, so a stale line can be found and fixed.
 - One page. If reps can't find the answer mid-call, cut until they can.
 
-Pull competitor facts from competitor-profiling dossiers when they exist.
+Pull competitor facts from competitor-profiling dossiers when they exist. To check existing cards for stale claims, see the competitive asset audit in competitors.
+
+---
+
+## Win-Loss Analysis
+
+Win-loss analysis turns CRM outcomes, call transcripts, and buyer interviews into an evidence-backed answer to "why do we win and lose, against whom?" It's the evidence that battle cards and "why we win" sections need.
+
+### Workflow
+
+1. **Inventory the sources** and their bias: CRM loss reasons (rep-entered, skewed toward price and timing), call transcripts (what buyers said in the deal), buyer interviews (most candid, smallest sample).
+2. **Include wins.** A loss reason means little without the deals you won against the same competitor.
+3. **Segment before you count.** Split by competitor, segment, deal size, and stage lost. "We lose on price" across everything often hides "we lose mid-market deals to one competitor on onboarding."
+4. **Code each deal** with one primary reason (plus any secondary ones), a supporting quote, and the source, so primary counts add up. Have one person code, or double-code a sample, so "primary" means the same thing throughout.
+5. **Report counts with sample sizes.** "6 of 9 losses to Acme cite onboarding time" beats "onboarding is a top theme." State n every time. Small slices are directional, and under ~5 deals it's a signal to watch, not a finding.
+6. **Turn findings into assets.** A deal with only a one-word CRM reason is low-confidence: confirm it with transcripts or interviews before it changes a battle card. Then update battle cards, the objection library, and discovery questions, and send product gaps to the product team.
+
+**For coding schemes, interview questions, and report format**: See [references/win-loss-analysis.md](references/win-loss-analysis.md)
 
 ---
 
@@ -352,6 +381,8 @@ Deliver the right format for each asset type:
 | Sales deck | Slide-by-slide outline with headline, body copy, and speaker notes |
 | One-pager | Full copy with layout guidance (visual hierarchy, sections) |
 | Objection doc | Table format: objection, response, proof point, follow-up |
+| Live objection | Likely concern, one response the rep can say as written, proof, follow-up question |
+| Win-loss report | Scope, findings with counts and quotes, by-competitor breakdown, asset updates |
 | Demo script | Scene-by-scene with timing, talk track, and interaction points |
 | ROI calculator | Input fields, formulas, output display with sample data |
 | Playbook | Structured document with table of contents and sections |
@@ -386,6 +417,7 @@ For partner sales enablement, see the [tools registry](../../tools/REGISTRY.md):
 
 - **competitors**: For public-facing comparison and alternative pages
 - **competitor-profiling**: For the competitor dossiers that feed battle cards
+- **customer-research**: For running buyer interviews and broader voice-of-customer research
 - **copywriting**: For marketing website copy
 - **cold-email**: For outbound prospecting emails
 - **revops**: For lead lifecycle, scoring, routing, and pipeline management
