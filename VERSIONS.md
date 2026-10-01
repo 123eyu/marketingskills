@@ -36,7 +36,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.0 | 2026-10-01 |
+| ads | 2.4.1 | 2026-10-01 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.1 | 2026-08-23 |
@@ -46,7 +46,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | public-relations | 1.1.1 | 2026-08-23 |
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
-| sales-enablement | 2.3.0 | 2026-10-01 |
+| sales-enablement | 2.3.1 | 2026-10-01 |
 | schema | 2.0.0 | 2026-05-05 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
@@ -56,6 +56,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.6 (2026-10-01)
+
+Post-merge review fixes. Closes #611.
+
+- **ads** (2.4.0 → 2.4.1): `reading-google-ads-data.md` corrections. The 30-day limit is `change_event`'s; `change_status` covers 90 days without field detail. `metrics.conversions` can include secondary actions a custom goal pulls in. `client_type` names the client, not who or why, and Editor changes aren't returned. Learning phase blocks optimizing, not fixing verified breakage.
+- **sales-enablement** (2.3.0 → 2.3.1): Battle Cards points single live objections at Live Deal Objection.
+- **tools/google-ads**: computed date ranges use the local calendar date (UTC shifted them a day late in US evenings), and invalid `--days` values are rejected.
+- **CI**: `check-versions.mjs` requires skill and repo versions to increase, and the repo version to match the newest changelog block.
 
 ### 2.11.5 (2026-10-01)
 
