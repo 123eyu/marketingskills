@@ -92,7 +92,6 @@ async function main() {
           break
         }
         case 'add': {
-          if (!rest[0]) { result = { error: 'List ID required' }; break }
           if (!args.email) { result = { error: '--email required' }; break }
           if (!args['list-id']) {
             result = { error: '--list-id is required for members add' }
@@ -117,6 +116,7 @@ async function main() {
             break
           }
           const subscriberHash = rest[0]
+          if (!subscriberHash) { result = { error: 'Subscriber hash required for members update' }; break }
           const body = {}
           if (args.status) body.status = args.status
           if (args['first-name'] || args['last-name']) {
