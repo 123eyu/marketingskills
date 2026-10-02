@@ -183,7 +183,13 @@ async function main() {
           if (!metric) { result = { error: '--metric required (metric name)' }; break }
           if (!email) { result = { error: '--email required' }; break }
           const properties = {}
-          if (args.value) properties.value = Number(args.value)
+          let value
+          if (args.value !== undefined) {
+            if (typeof args.value !== 'string' || !args.value.trim() || !Number.isFinite(Number(args.value))) {
+              result = { error: '--value must be a finite number' }; break
+            }
+            value = Number(args.value)
+          }
           if (args.property) {
             const pairs = args.property.split(',')
             for (const pair of pairs) {
@@ -198,6 +204,7 @@ async function main() {
                 metric: { data: { type: 'metric', attributes: { name: metric } } },
                 profile: { data: { type: 'profile', attributes: { email } } },
                 properties,
+                ...(value !== undefined ? { value } : {}),
                 time: new Date().toISOString(),
               }
             }
