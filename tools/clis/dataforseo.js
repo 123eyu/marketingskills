@@ -69,11 +69,24 @@ async function main() {
         case 'google': {
           const keyword = args.keyword
           if (!keyword) { result = { error: '--keyword required' }; break }
-          result = await api('POST', '/serp/google/organic/live/regular', [{
-            keyword,
-            location_name: location,
-            language_name: language,
-          }])
+          const task = { keyword }
+          if (args['location-code'] !== undefined) {
+            if (typeof args['location-code'] !== 'string' || !Number.isSafeInteger(locationCode) || locationCode <= 0) {
+              result = { error: '--location-code must be a positive integer' }; break
+            }
+            task.location_code = locationCode
+          } else {
+            task.location_name = location
+          }
+          if (args['language-code'] !== undefined) {
+            if (typeof args['language-code'] !== 'string' || !args['language-code'].trim()) {
+              result = { error: '--language-code requires a language code' }; break
+            }
+            task.language_code = languageCode
+          } else {
+            task.language_name = language
+          }
+          result = await api('POST', '/serp/google/organic/live/regular', [task])
           break
         }
         case 'locations':
