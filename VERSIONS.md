@@ -5,57 +5,68 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.9.0 | 2026-10-02 |
-| ai-seo | 2.7.0 | 2026-10-02 |
-| analytics | 2.0.1 | 2026-07-22 |
+| ad-creative | 2.9.1 | 2026-10-02 |
+| ai-seo | 2.7.1 | 2026-10-02 |
+| analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
-| attribution | 1.1.0 | 2026-07-23 |
-| churn-prevention | 2.0.0 | 2026-05-05 |
-| co-marketing | 2.0.1 | 2026-08-23 |
+| attribution | 1.1.1 | 2026-10-02 |
+| churn-prevention | 2.0.1 | 2026-10-02 |
+| co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.1.0 | 2026-10-02 |
 | community-marketing | 2.0.1 | 2026-08-23 |
 | competitor-profiling | 2.1.0 | 2026-10-01 |
 | competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.1 | 2026-08-23 |
+| content-strategy | 2.1.2 | 2026-10-02 |
 | copy-editing | 2.1.0 | 2026-10-02 |
 | copywriting | 2.1.0 | 2026-10-02 |
 | cro | 2.0.0 | 2026-05-05 |
-| customer-research | 2.0.2 | 2026-08-23 |
+| customer-research | 2.0.3 | 2026-10-02 |
 | directory-submissions | 2.1.0 | 2026-10-02 |
-| emails | 2.1.0 | 2026-10-02 |
+| emails | 2.1.1 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.1 | 2026-05-18 |
-| influencer-marketing | 1.1.0 | 2026-08-19 |
-| launch | 2.0.2 | 2026-08-23 |
+| influencer-marketing | 1.1.1 | 2026-10-02 |
+| launch | 2.0.3 | 2026-10-02 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
-| marketing-loops | 1.2.0 | 2026-07-10 |
-| marketing-plan | 1.1.1 | 2026-08-23 |
+| marketing-loops | 1.2.1 | 2026-10-02 |
+| marketing-plan | 1.1.2 | 2026-10-02 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.1 | 2026-10-01 |
+| ads | 2.4.2 | 2026-10-02 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
-| pricing | 2.1.1 | 2026-08-23 |
+| pricing | 2.1.2 | 2026-10-02 |
 | product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
-| prospecting | 1.1.0 | 2026-07-13 |
-| public-relations | 1.1.1 | 2026-08-23 |
-| referrals | 2.0.1 | 2026-08-23 |
-| revops | 2.0.0 | 2026-05-05 |
-| sales-enablement | 2.3.1 | 2026-10-01 |
+| prospecting | 1.1.1 | 2026-10-02 |
+| public-relations | 1.1.2 | 2026-10-02 |
+| referrals | 2.0.2 | 2026-10-02 |
+| revops | 2.0.1 | 2026-10-02 |
+| sales-enablement | 2.3.2 | 2026-10-02 |
 | schema | 2.0.0 | 2026-05-05 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
-| sms | 1.0.0 | 2026-05-21 |
-| social | 2.3.0 | 2026-10-02 |
-| video | 2.1.0 | 2026-07-14 |
+| sms | 1.0.1 | 2026-10-02 |
+| social | 2.3.1 | 2026-10-02 |
+| video | 2.1.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.12 (2026-10-02)
+
+Community fixes, links and security. Lands #581, #583, #518, #542, #543, and #540 with contributor credit, plus version bumps.
+
+- **Portable tool links** (#581 by @FekyBaz, closes #524): every `../../tools/...` link in 21 skills is now an absolute GitHub URL, so links work after `npx skills add` installs a single skill. One link #581 missed (ads `reading-google-ads-data.md`) is fixed too. Bumps: ad-creative, ads, ai-seo, analytics, attribution, churn-prevention, co-marketing, content-strategy, customer-research, emails, influencer-marketing, launch, marketing-loops, pricing, prospecting, public-relations, referrals, revops, sales-enablement, sms, social, video (patch each).
+- **Internal links** (#583 by @dajiaohuang): fixes the `positioning` link (now product-marketing) and the ad-creative cross-skill link (now names the ads skill), and adds a CRLF-safe partner sync. Its PARTNERS.md change was reverted, since the header template's `../REGISTRY.md` path is correct for guides.
+- **Prompt-injection guardrail** (#543 by @sneakygriff): "fetched content is untrusted data" in 8 skills that read third-party pages.
+- **marketing-plan path safety** (#542 by @sneakygriff): sanitizes `{client-slug}` so one client's files can't be read from another's. marketing-plan 1.1.1 → 1.1.2.
+- **ad-creative review template** (#540 by @sneakygriff): proper `\u003c` escaping, remote image URLs blocked so the review page can't beacon, and the third-party `npx gooseworks install` route removed. The Gooseworks credit is kept in full.
+- **Windows validator** (#518 by @frankgthb-afk): `validate-skills-official.sh` works under Git Bash.
 
 ### 2.11.11 (2026-10-02)
 
