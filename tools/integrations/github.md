@@ -180,3 +180,10 @@ See `skills/prospecting/references/saas-prospecting.md` and `data-sources.md` fo
 - prospecting (primary use case)
 - cold-email (downstream outreach)
 - competitor-profiling (deeper account-level research on individual stargazers worth pursuing)
+
+### CSV export of public profiles
+
+`github-prospects.js --format csv` prefixes formula-like profile strings with
+an apostrophe so spreadsheet imports treat them as text. Numeric counts remain
+numeric. Use the default JSON format when you need the original unmodified
+profile values. CSV quoting alone does not prevent spreadsheet formula execution.

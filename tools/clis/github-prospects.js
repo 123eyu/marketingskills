@@ -130,7 +130,13 @@ function toCSV(users) {
   const cols = ['login', 'name', 'company', 'email', 'blog', 'location', 'bio', 'twitter_username', 'public_repos', 'followers', 'created_at', 'html_url']
   const escape = (v) => {
     if (v === null || v === undefined) return ''
-    const s = String(v).replace(/\r?\n/g, ' ')
+    // Public profile strings can be spreadsheet formulas. Quoting alone does
+    // not prevent evaluation when the CSV is opened in a spreadsheet.
+    const raw = String(v)
+    const literal = typeof v === 'string' && /^[\s]*[=+@-]/.test(raw)
+      ? "'" + raw
+      : raw
+    const s = literal.replace(/[\r\n]/g, ' ')
     if (s.includes(',') || s.includes('"')) return `"${s.replace(/"/g, '""')}"`
     return s
   }
