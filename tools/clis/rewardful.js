@@ -76,12 +76,16 @@ async function main() {
           break
         }
         case 'update': {
-          if (!rest[0]) { result = { error: 'Affiliate ID required' }; break }
+          const affiliateId = rest[0] || args.id
+          if (!affiliateId) { result = { error: 'Affiliate ID required (positional arg or --id)' }; break }
+          if (rest[0] && args.id && rest[0] !== args.id) {
+            result = { error: 'Positional affiliate ID and --id must match' }; break
+          }
           const body = {}
           if (args['first-name']) body.first_name = args['first-name']
           if (args['last-name']) body.last_name = args['last-name']
           if (args['paypal-email']) body.paypal_email = args['paypal-email']
-          result = await api('PUT', `/affiliates/${args.id}`, body)
+          result = await api('PUT', `/affiliates/${affiliateId}`, body)
           break
         }
         default:
