@@ -56,7 +56,9 @@ const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 function getAccountId() {
-  return args['account-id'] || DEFAULT_ACCOUNT_ID
+  const id = args['account-id'] || DEFAULT_ACCOUNT_ID
+  // accounts list returns canonical act_ IDs; callers may also use bare IDs.
+  return id ? id.replace(/^act_/, '') : id
 }
 
 async function main() {
