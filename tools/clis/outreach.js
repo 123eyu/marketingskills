@@ -122,6 +122,9 @@ async function main() {
               },
             },
           }
+          if (args['mailbox-id']) {
+            body.data.relationships.mailbox = { data: { type: 'mailbox', id: args['mailbox-id'] } }
+          }
           result = await api('POST', '/sequenceStates', body)
           break
         }
@@ -190,7 +193,7 @@ async function main() {
             get: 'sequences get --id <id>',
           },
           'sequence-states': {
-            create: 'sequence-states create --sequence-id <id> --prospect-id <id>',
+            create: 'sequence-states create --sequence-id <id> --prospect-id <id> [--mailbox-id <sender_mailbox_id>]',
           },
           mailings: {
             list: 'mailings list [--sequence-id <id>]',
