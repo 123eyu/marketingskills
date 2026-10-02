@@ -215,9 +215,10 @@ async function main() {
           result = await api('GET', `/webhooks/${rest[0]}`)
           break
         case 'create': {
-          if (!args.url) { result = { error: '--url required (webhook URL)' }; break }
+          const endpoint = args.endpoint || args.url
+          if (!endpoint) { result = { error: '--endpoint required (webhook URL; --url also accepted)' }; break }
           const events = args.events?.split(',') || ['email.sent', 'email.delivered', 'email.bounced']
-          result = await api('POST', '/webhooks', { url: args.url, events })
+          result = await api('POST', '/webhooks', { endpoint, events })
           break
         }
         case 'delete':
