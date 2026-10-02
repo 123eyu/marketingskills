@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
-const cli = path.resolve(__dirname, '../tools/clis/github-prospects.js')
+const cli = path.resolve(__dirname, '../../tools/clis/github-prospects.js')
 function run(command, status, args = []) {
   const source = `global.fetch = async url => {
     const profile = String(url).includes('/users/');

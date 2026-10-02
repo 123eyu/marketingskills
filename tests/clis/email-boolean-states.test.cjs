@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 function run(vendor, args, fetch = true) {
-  const cli = path.resolve(__dirname, `../tools/clis/${vendor}.js`)
+  const cli = path.resolve(__dirname, `../../tools/clis/${vendor}.js`)
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');
     return { status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };

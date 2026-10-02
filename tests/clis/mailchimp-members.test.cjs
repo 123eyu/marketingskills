@@ -2,7 +2,7 @@ const { test } = require('node:test')
 const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
-const cli = path.resolve(__dirname, '../tools/clis/mailchimp.js')
+const cli = path.resolve(__dirname, '../../tools/clis/mailchimp.js')
 function run(args, fetch = false) {
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');

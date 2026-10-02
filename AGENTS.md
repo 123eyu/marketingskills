@@ -43,6 +43,7 @@ marketingskills/
 node --check tools/clis/<name>.js   # Syntax check
 node tools/clis/<name>.js           # Show usage (no args = help)
 node tools/clis/<name>.js <cmd> --dry-run  # Preview request without sending
+node --test tests/clis/*.test.cjs   # Contract tests (mocked fetch, no live calls)
 ```
 
 ## Versioning

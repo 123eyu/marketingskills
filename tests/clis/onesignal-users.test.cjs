@@ -2,7 +2,7 @@ const { test } = require('node:test')
 const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
-const cli = path.resolve(__dirname, '../tools/clis/onesignal.js')
+const cli = path.resolve(__dirname, '../../tools/clis/onesignal.js')
 function run(args, network = false) {
   const code = `global.fetch = async (url, options) => {
     if (!${network}) throw new Error('Unexpected network request');

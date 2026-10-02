@@ -2,7 +2,7 @@ const { test } = require('node:test')
 const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
-const cli = path.resolve(__dirname, '../tools/clis/typeform.js')
+const cli = path.resolve(__dirname, '../../tools/clis/typeform.js')
 function run(args, fetchSource = "throw new Error('Unexpected network request')") {
   const source = `global.fetch = async (url, options) => { ${fetchSource} }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath, ['-e', source], {

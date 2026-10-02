@@ -2,7 +2,7 @@ const {test} = require('node:test')
 const assert = require('node:assert/strict')
 const {spawnSync} = require('node:child_process')
 const path = require('node:path')
-const cli = path.resolve(__dirname, '../tools/clis/plausible.js')
+const cli = path.resolve(__dirname, '../../tools/clis/plausible.js')
 function run(args, oracle='') {
   const code = `global.fetch = async (url, options) => {
     const assert = require('node:assert/strict'); const parsed = new URL(url);

@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
-const cli = path.resolve(__dirname, '../tools/clis/dataforseo.js')
+const cli = path.resolve(__dirname, '../../tools/clis/dataforseo.js')
 function run(args, dry = false) {
   const source = `global.fetch = async (url, options) => ({ status: 200, text: async () => JSON.stringify({ url, method: options.method, body: JSON.parse(options.body) }) }); process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}, ...( ${dry} ? ['--dry-run'] : [])]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], {encoding: 'utf8', env: {...process.env, DATAFORSEO_LOGIN: 'fixture-login', DATAFORSEO_PASSWORD: 'fixture-password'}})

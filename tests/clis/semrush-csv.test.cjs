@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
-const cli = path.resolve(__dirname, '../tools/clis/semrush.js')
+const cli = path.resolve(__dirname, '../../tools/clis/semrush.js')
 function run(csv, options = {}) {
   const source = `global.fetch = async () => ({ok: ${options.ok !== false}, status: ${options.status || 200}, text: async () => ${JSON.stringify(csv)}}); process.argv = ['node', ${JSON.stringify(cli)}, 'domain', 'organic', '--domain', 'example.com']; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], {encoding: 'utf8', env: {...process.env, SEMRUSH_API_KEY: 'fixture-key'}})
