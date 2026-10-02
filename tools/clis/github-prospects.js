@@ -52,6 +52,7 @@ async function api(path, opts = {}) {
     const body = await res.text()
     return {
       error: `HTTP ${res.status}`,
+      status: res.status,
       hint: TOKEN
         ? 'Token rejected — check GITHUB_TOKEN scopes (public_repo is enough for public data).'
         : 'Set GITHUB_TOKEN env var to raise rate limit from 60/hr to 5000/hr.',
@@ -63,7 +64,7 @@ async function api(path, opts = {}) {
 
   if (!res.ok) {
     const body = await res.text()
-    return { error: `HTTP ${res.status}`, body }
+    return { error: `HTTP ${res.status}`, status: res.status, body }
   }
 
   const data = await res.json()
@@ -116,6 +117,9 @@ async function enrichUsers(users, opts = {}, { concurrency = 5, targetCount } = 
     const batch = users.slice(i, i + concurrency)
     const profiles = await Promise.all(batch.map(u => getUser(u.login)))
     for (const profile of profiles) {
+      if (profile?.error && profile.status !== 404) {
+        throw new Error(`Profile enrichment failed: ${profile.error}`)
+      }
       if (!profile || profile.error) continue
       if (matchesFilter(profile, opts)) matched.push(profile)
     }
