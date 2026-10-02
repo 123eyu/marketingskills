@@ -10,20 +10,39 @@ if ((!API_KEY) && rawArgs.length > 0) {
 }
 
 function parseCSV(text) {
-  const lines = text.trim().split('\n')
-  if (lines.length < 2) return []
-  const headers = lines[0].split(';')
-  const rows = []
-  for (let i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue
-    const values = lines[i].split(';')
-    const row = {}
-    for (let j = 0; j < headers.length; j++) {
-      row[headers[j]] = values[j] || ''
-    }
-    rows.push(row)
+  const records = []
+  let values = []
+  let value = ''
+  let quoted = false
+  const finishRecord = () => {
+    values.push(value)
+    if (values.some(cell => cell.trim())) records.push(values)
+    values = []
+    value = ''
   }
-  return rows
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i]
+    if (char === '"') {
+      if (quoted && text[i + 1] === '"') {
+        value += '"'
+        i++
+      } else {
+        quoted = !quoted
+      }
+    } else if (!quoted && char === ';') {
+      values.push(value)
+      value = ''
+    } else if (!quoted && (char === '\n' || char === '\r')) {
+      finishRecord()
+      if (char === '\r' && text[i + 1] === '\n') i++
+    } else {
+      value += char
+    }
+  }
+  if (value || values.length) finishRecord()
+  const [headers, ...rows] = records
+  if (!headers) return []
+  return rows.map(cells => Object.fromEntries(headers.map((header, index) => [header, cells[index] || ''])))
 }
 
 async function api(params) {
