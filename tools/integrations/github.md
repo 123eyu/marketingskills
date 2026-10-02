@@ -143,6 +143,15 @@ node tools/clis/github-prospects.js rate-limit
 - `--format csv`: output prospecting-ready CSV; default is JSON
 - `--dry-run`: preview the request without sending
 
+### Enrichment failures
+
+If profile enrichment fails because of authentication, rate limits, or another
+HTTP error, `stargazers`, `forks`, and `watchers` exit with status 1 and a JSON
+diagnostic on stderr. They do not print a partial CSV or a misleading successful
+empty JSON export. A missing (404) user profile can still be skipped; a valid
+profile that does not match the requested filters is also skipped.
+
+
 ## When to Use
 
 - **SaaS prospecting** (primary use case): stargazers of a competitor, complement, or category-defining repo as in-market developer signal
@@ -180,11 +189,3 @@ See `skills/prospecting/references/saas-prospecting.md` and `data-sources.md` fo
 - prospecting (primary use case)
 - cold-email (downstream outreach)
 - competitor-profiling (deeper account-level research on individual stargazers worth pursuing)
-
-### Enrichment failures
-
-If profile enrichment fails because of authentication, rate limits, or another
-HTTP error, `stargazers`, `forks`, and `watchers` exit with status 1 and a JSON
-diagnostic on stderr. They do not print a partial CSV or a misleading successful
-empty JSON export. A missing (404) user profile can still be skipped; a valid
-profile that does not match the requested filters is also skipped.
