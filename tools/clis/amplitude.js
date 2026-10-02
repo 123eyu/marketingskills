@@ -45,6 +45,16 @@ async function queryApi(method, path, params) {
       'Content-Type': 'application/json',
     },
   })
+  // Export responses are ZIP archives, not text. Keep JSON stdout while
+  // preserving their bytes: Buffer.from(result.body, 'base64') restores the ZIP.
+  if (path === '/export' && res.ok) {
+    return {
+      status: res.status,
+      contentType: 'application/zip',
+      encoding: 'base64',
+      body: Buffer.from(await res.arrayBuffer()).toString('base64'),
+    }
+  }
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -167,7 +177,7 @@ async function main() {
         usage: {
           track: 'track [event --user-id <id> --event-type <type> [--properties <json>] | batch --events <json>]',
           users: 'users activity --user-id <id>',
-          export: 'export events --start <YYYYMMDDThh> --end <YYYYMMDDThh>',
+          export: "export events --start <YYYYMMDDThh> --end <YYYYMMDDThh> (ZIP in base64 body; decode with Buffer.from(result.body, 'base64'))",
           retention: 'retention get --start <YYYYMMDD> --end <YYYYMMDD> [--event <type>]',
         }
       }
