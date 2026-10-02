@@ -3,6 +3,7 @@
 const TOKEN = process.env.GOOGLE_ADS_TOKEN
 const DEV_TOKEN = process.env.GOOGLE_ADS_DEVELOPER_TOKEN
 const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID
+const LOGIN_CUSTOMER_ID = process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID?.replace(/-/g, '')
 const BASE_URL = 'https://googleads.googleapis.com/v24'
 
 if (!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) {
@@ -11,16 +12,18 @@ if (!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) {
 }
 
 async function api(method, path, body) {
+  const headers = {
+    'Authorization': `Bearer ${TOKEN}`,
+    'developer-token': DEV_TOKEN,
+    'Content-Type': 'application/json',
+  }
+  if (LOGIN_CUSTOMER_ID) headers['login-customer-id'] = LOGIN_CUSTOMER_ID
   if (args['dry-run']) {
-    return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { Authorization: '***', 'developer-token': '***', 'Content-Type': 'application/json' }, body: body || undefined }
+    return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { ...headers, Authorization: '***', 'developer-token': '***' }, body: body || undefined }
   }
   const res = await fetch(`${BASE_URL}${path}`, {
     method,
-    headers: {
-      'Authorization': `Bearer ${TOKEN}`,
-      'developer-token': DEV_TOKEN,
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()
