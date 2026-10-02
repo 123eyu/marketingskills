@@ -115,7 +115,8 @@ async function main() {
           if (args.model) {
             const pairs = args.model.split(',')
             for (const pair of pairs) {
-              const [k, v] = pair.split(':')
+              const [k, ...valueParts] = pair.split(':')
+              const v = valueParts.join(':')
               if (k && v) body.TemplateModel[k] = v
             }
           }
