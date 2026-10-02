@@ -152,7 +152,7 @@ async function main() {
           const aliasLabel = args['alias-label'] || 'external_id'
           const aliasId = args['alias-id']
           if (!aliasId) { result = { error: '--alias-id required' }; break }
-          result = await api('GET', `/api/v1/apps/${APP_ID}/users/by/${aliasLabel}/${aliasId}`)
+          result = await api('GET', `/apps/${APP_ID}/users/by/${encodeURIComponent(aliasLabel)}/${encodeURIComponent(aliasId)}`)
           break
         }
         case 'create': {
@@ -164,16 +164,25 @@ async function main() {
             payload.subscriptions = [{ type: 'Email', token: args.email }]
           }
           if (args.tags) {
-            try { payload.tags = JSON.parse(args.tags) } catch { result = { error: 'Invalid --tags JSON' }; break }
+            try {
+              const tags = JSON.parse(args.tags)
+              if (!tags || typeof tags !== 'object' || Array.isArray(tags)) {
+                result = { error: '--tags must be a JSON object' }; break
+              }
+              payload.properties = { tags }
+            } catch { result = { error: 'Invalid --tags JSON' }; break }
           }
-          result = await api('POST', `/api/v1/apps/${APP_ID}/users`, payload)
+          if (!payload.identity && !payload.subscriptions) {
+            result = { error: '--external-id or --email required' }; break
+          }
+          result = await api('POST', `/apps/${APP_ID}/users`, payload)
           break
         }
         case 'delete': {
           const aliasLabel = args['alias-label'] || 'external_id'
           const aliasId = args['alias-id']
           if (!aliasId) { result = { error: '--alias-id required' }; break }
-          result = await api('DELETE', `/api/v1/apps/${APP_ID}/users/by/${aliasLabel}/${aliasId}`)
+          result = await api('DELETE', `/apps/${APP_ID}/users/by/${encodeURIComponent(aliasLabel)}/${encodeURIComponent(aliasId)}`)
           break
         }
         default:
