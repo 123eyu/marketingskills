@@ -285,7 +285,13 @@ async function main() {
             description: args.description || 'Discount',
           }
           if (args.code) body.code = args.code
-          if (args['max-uses']) body.maximum_recurring_intervals = Number(args['max-uses'])
+          if (args['max-uses'] !== undefined) {
+            const maxUses = Number(args['max-uses'])
+            if (typeof args['max-uses'] !== 'string' || !Number.isSafeInteger(maxUses) || maxUses < 1) {
+              result = { error: '--max-uses must be a positive safe integer' }; break
+            }
+            body.usage_limit = maxUses
+          }
           if (args['currency-code']) body.currency_code = args['currency-code']
           result = await api('POST', '/discounts', body)
           break
@@ -368,7 +374,7 @@ async function main() {
           customers: 'customers [list | get --id <id> | create --email <email> [--name <name>] | update --id <id>]',
           subscriptions: 'subscriptions [list | get --id <id> | update --id <id> | cancel --id <id> [--effective-from next_billing_period] | pause --id <id> | resume --id <id>]',
           transactions: 'transactions [list | get --id <id> | create --items <json>]',
-          discounts: 'discounts [list | get --id <id> | create --amount <amt> --type <type> [--code <code>]]',
+          discounts: 'discounts [list | get --id <id> | create --amount <amt> --type <type> [--code <code>] [--max-uses <count>]]',
           adjustments: 'adjustments [list | create --transaction-id <id> --action <action> --reason <reason> --items <json>]',
           events: 'events [list | types]',
           notifications: 'notifications [list | get --id <id> | replay --id <id>]',
