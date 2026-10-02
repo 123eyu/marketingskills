@@ -157,13 +157,13 @@ async function main() {
         case 'traits': {
           if (!args['space-id']) { result = { error: '--space-id required' }; break }
           if (!args['user-id']) { result = { error: '--user-id required' }; break }
-          result = await profileApi('GET', `/spaces/${args['space-id']}/collections/users/profiles/user_id:${args['user-id']}/traits`)
+          result = await profileApi('GET', `/spaces/${encodeURIComponent(args['space-id'])}/collections/users/profiles/user_id:${encodeURIComponent(args['user-id'])}/traits`)
           break
         }
         case 'events': {
           if (!args['space-id']) { result = { error: '--space-id required' }; break }
           if (!args['user-id']) { result = { error: '--user-id required' }; break }
-          result = await profileApi('GET', `/spaces/${args['space-id']}/collections/users/profiles/user_id:${args['user-id']}/events`)
+          result = await profileApi('GET', `/spaces/${encodeURIComponent(args['space-id'])}/collections/users/profiles/user_id:${encodeURIComponent(args['user-id'])}/events`)
           break
         }
         default:
