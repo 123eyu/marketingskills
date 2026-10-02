@@ -98,7 +98,7 @@ curl -s https://api.outreach.io/api/v2/accounts \
 ### List Tasks
 
 ```bash
-curl -s "https://api.outreach.io/api/v2/tasks?filter[status]=incomplete" \
+curl -s "https://api.outreach.io/api/v2/tasks?filter[state]=incomplete" \
   -H "Authorization: Bearer $OUTREACH_ACCESS_TOKEN" \
   -H "Content-Type: application/vnd.api+json"
 ```
@@ -170,3 +170,7 @@ curl -s "https://api.outreach.io/api/v2/tasks?filter[status]=incomplete" \
 - revops
 - sales-enablement
 - emails
+
+The task filter is `state` (`pending`, `incomplete`, or `complete`). Use
+`tasks list --state incomplete`; the CLI retains `--status` as an alias.
+See [discover open tasks](https://developers.outreach.io/api/common-patterns).
