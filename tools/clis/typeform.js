@@ -88,9 +88,12 @@ async function main() {
         case 'update': {
           const id = args.id
           if (!id) { result = { error: '--id required (form ID)' }; break }
-          const body = {}
-          if (args.title) body.title = args.title
-          result = await api('PUT', `/forms/${id}`, body)
+          if (!args.title) { result = { error: '--title required' }; break }
+          // PUT replaces the entire form, deleting omitted fields and their results.
+          // Use Typeform's JSON Patch endpoint to rename without touching questions.
+          result = await api('PATCH', `/forms/${id}`, [
+            { op: 'replace', path: '/title', value: args.title },
+          ])
           break
         }
         case 'delete': {
