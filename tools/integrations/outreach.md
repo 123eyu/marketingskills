@@ -80,6 +80,12 @@ curl -s -X POST https://api.outreach.io/api/v2/sequenceStates \
   }'
 ```
 
+For sequences with mailing steps, pass `--mailbox-id` to `sequence-states create`
+to select the sending mailbox. It is included as the `mailbox` relationship.
+Non-mail sequences can omit it. See
+[add prospects to sequences](https://developers.outreach.io/api/common-patterns).
+
+
 ### List Mailings for a Sequence
 
 ```bash
@@ -171,8 +177,3 @@ curl -s "https://api.outreach.io/api/v2/tasks?filter[status]=incomplete" \
 - revops
 - sales-enablement
 - emails
-
-For sequences with mailing steps, pass `--mailbox-id` to `sequence-states create`
-to select the sending mailbox. It is included as the `mailbox` relationship.
-Non-mail sequences can omit it. See
-[add prospects to sequences](https://developers.outreach.io/api/common-patterns).
