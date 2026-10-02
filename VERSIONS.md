@@ -5,14 +5,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.8.2 | 2026-08-23 |
+| ad-creative | 2.9.0 | 2026-10-02 |
 | ai-seo | 2.5.0 | 2026-09-04 |
 | analytics | 2.0.1 | 2026-07-22 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.0 | 2026-07-23 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
 | co-marketing | 2.0.1 | 2026-08-23 |
-| cold-email | 2.0.0 | 2026-05-05 |
+| cold-email | 2.1.0 | 2026-10-02 |
 | community-marketing | 2.0.1 | 2026-08-23 |
 | competitor-profiling | 2.1.0 | 2026-10-01 |
 | competitors | 2.3.0 | 2026-10-01 |
@@ -22,7 +22,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cro | 2.0.0 | 2026-05-05 |
 | customer-research | 2.0.2 | 2026-08-23 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
-| emails | 2.0.0 | 2026-05-05 |
+| emails | 2.1.0 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.1 | 2026-05-18 |
@@ -52,10 +52,19 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.2.0 | 2026-07-09 |
+| social | 2.3.0 | 2026-10-02 |
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.8 (2026-10-02)
+
+The AI-tell rules from 2.11.7 extended to the channel skills, each inline because installed skills can't load copywriting's references. Each gets the core bans (contrast reveals, negation lists, trailing pile-ons, self-answered questions and colon reveals, stock phrases, em dashes) plus its own channel tells, adapted from the closed #575. Reference templates that modeled tells (contrast-reveal carousel and static-ad slots, generic hooks, em dashes in example copy) are rewritten. Rules mirrored in each description. Closes #615.
+
+- **social** (2.2.0 → 2.3.0): new **No AI Tells** section with broetry, engagement-bait closers, manufactured vulnerability, and emoji bullets. Hook formulas in SKILL.md and `post-templates.md` that modeled tells ("isn't what you think," "Here's why:," "The truth is," an em-dash hook) are rewritten. New eval (id 8).
+- **emails** (2.0.0 → 2.1.0): new **No AI Tells** section with subject-line bait (fake "Re:"/"Fwd:"), stock openers, and sign-off filler. New eval (id 7).
+- **cold-email** (2.0.0 → 2.1.0): AI tells added to What to Avoid and the Quality Check; em-dash contrasts removed from the skill's own text. New eval (id 7).
+- **ad-creative** (2.8.2 → 2.9.0): new **No AI Tells** section with stacked negations to fit character limits, hook slop, CTA slop, and a no-repeated-sentence-shape rule across a batch. New eval (id 16).
 
 ### 2.11.7 (2026-10-02)
 
