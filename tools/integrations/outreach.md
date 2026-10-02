@@ -145,7 +145,7 @@ curl -s "https://api.outreach.io/api/v2/tasks?filter[state]=incomplete" \
 - `filter[prospect][id]` - Filter by prospect ID
 
 ### Tasks
-- `filter[status]` - Filter by status (e.g., `incomplete`, `complete`)
+- `filter[state]` - Filter by state (e.g., `pending`, `incomplete`, `complete`)
 - `filter[taskType]` - Filter by type (e.g., `call`, `email`, `action_item`)
 
 ## When to Use
