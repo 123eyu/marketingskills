@@ -194,7 +194,8 @@ async function main() {
           if (args.property) {
             const pairs = args.property.split(',')
             for (const pair of pairs) {
-              const [k, v] = pair.split(':')
+              const [k, ...valueParts] = pair.split(':')
+              const v = valueParts.join(':')
               if (k && v) properties[k] = v
             }
           }
