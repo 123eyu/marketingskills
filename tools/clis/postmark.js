@@ -177,10 +177,11 @@ async function main() {
         case 'create': {
           const name = args.name
           if (!name) { result = { error: '--name required' }; break }
-          const body = {
-            Name: name,
-            Subject: args.subject || '',
+          if (args.type === 'Layout' && args.subject) {
+            result = { error: '--subject is not allowed for Layout templates' }; break
           }
+          const body = { Name: name }
+          if (args.type !== 'Layout') body.Subject = args.subject || ''
           if (args.html) body.HtmlBody = args.html
           if (args.text) body.TextBody = args.text
           if (args.alias) body.Alias = args.alias
@@ -364,7 +365,7 @@ async function main() {
         error: 'Unknown command',
         usage: {
           email: 'email [send --from <from> --to <to> --subject <subj> | send-template --from <from> --to <to> --template <id> | send-batch --from <from> --to <to1,to2> --subject <subj>]',
-          templates: 'templates [list | get --id <id> | create --name <name> | delete --id <id>]',
+          templates: 'templates [list | get --id <id> | create --name <name> [--type Standard|Layout] [--subject <subject> (Standard only)] | delete --id <id>]',
           bounces: 'bounces [list | get --id <id> | stats | activate --id <id>]',
           messages: 'messages [outbound | inbound | get --id <id>]',
           stats: 'stats [overview | sends | bounces | opens | clicks | spam]',
