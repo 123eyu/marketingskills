@@ -64,6 +64,13 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function booleanArg(name) {
+  const value = args[name]
+  if (value === true || value === 'true') return true
+  if (value === 'false') return false
+  throw new Error(`--${name} must be true or false (or a bare flag for true)`)
+}
+
 async function main() {
   let result
 
@@ -87,7 +94,7 @@ async function main() {
           if (!args.html && !args.text) body.TextBody = ''
           if (args.tag) body.Tag = args.tag
           if (args.stream) body.MessageStream = args.stream
-          if (args['track-opens']) body.TrackOpens = true
+          if (args['track-opens'] !== undefined) body.TrackOpens = booleanArg('track-opens')
           if (args['track-links']) body.TrackLinks = args['track-links']
           if (args.cc) body.Cc = args.cc
           if (args.bcc) body.Bcc = args.bcc
@@ -362,7 +369,7 @@ async function main() {
           stats: 'stats [overview | sends | bounces | opens | clicks | spam]',
           server: 'server [get]',
           suppressions: 'suppressions [list | create --email <email> | delete --email <email>]',
-          options: '--tag <tag> --from <date> --to <date> --stream <stream-id>',
+          options: '--tag <tag> --from <date> --to <date> --stream <stream-id> --track-opens [true|false]',
         }
       }
   }

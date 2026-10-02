@@ -52,6 +52,13 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function booleanArg(name) {
+  const value = args[name]
+  if (value === true || value === 'true') return true
+  if (value === 'false') return false
+  throw new Error(`--${name} must be true or false (or a bare flag for true)`)
+}
+
 async function main() {
   let result
 
@@ -176,7 +183,7 @@ async function main() {
           const body = { email: args.email }
           if (args['first-name']) body.first_name = args['first-name']
           if (args['last-name']) body.last_name = args['last-name']
-          if (args.unsubscribed) body.unsubscribed = args.unsubscribed === 'true'
+          if (args.unsubscribed !== undefined) body.unsubscribed = booleanArg('unsubscribed')
           result = await api('POST', `/audiences/${audienceId}/contacts`, body)
           break
         }
@@ -185,7 +192,7 @@ async function main() {
           const body = {}
           if (args['first-name']) body.first_name = args['first-name']
           if (args['last-name']) body.last_name = args['last-name']
-          if (args.unsubscribed !== undefined) body.unsubscribed = args.unsubscribed === 'true'
+          if (args.unsubscribed !== undefined) body.unsubscribed = booleanArg('unsubscribed')
           result = await api('PATCH', `/audiences/${audienceId}/contacts/${contactId}`, body)
           break
         }
@@ -352,7 +359,7 @@ async function main() {
           domains: 'domains [list|get|create|verify|delete] [id] [--name <name>]',
           'api-keys': 'api-keys [list|create|delete] [id] [--name <name>]',
           audiences: 'audiences [list|get|create|delete] [id] [--name <name>]',
-          contacts: 'contacts <audience_id> [list|get|create|update|delete] [contact_id] [--email <email>]',
+          contacts: 'contacts <audience_id> [list|get|create|update|delete] [contact_id] [--email <email>] [--unsubscribed [true|false]]',
           webhooks: 'webhooks [list|get|create|delete] [id] [--endpoint <url>]',
           batch: 'batch --emails <json_array>',
           templates: 'templates [list|get|create|update|delete|publish|duplicate] [id] [--name <name>] [--html <html>] [--variables <json>]',
