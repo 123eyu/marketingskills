@@ -123,7 +123,7 @@ async function main() {
           const advId = getAdvertiserId()
           if (!advId) { result = { error: 'TIKTOK_ADVERTISER_ID env or --advertiser-id required' }; break }
           const agParams = new URLSearchParams({ advertiser_id: advId })
-          if (args['campaign-id']) agParams.set('campaign_ids', JSON.stringify([args['campaign-id']]))
+          if (args['campaign-id']) agParams.set('filtering', JSON.stringify({ campaign_ids: [args['campaign-id']] }))
           result = await api('GET', `/adgroup/get/?${agParams}`)
           break
         }
@@ -147,7 +147,10 @@ async function main() {
             start_date: args['start-date'],
             end_date: args['end-date'],
           }
-          result = await api('POST', '/report/integrated/get/', body)
+          const reportParams = new URLSearchParams(Object.entries(body).map(([key, value]) => [
+            key, Array.isArray(value) ? JSON.stringify(value) : String(value),
+          ]))
+          result = await api('GET', `/report/integrated/get/?${reportParams}`)
           break
         }
         default:
