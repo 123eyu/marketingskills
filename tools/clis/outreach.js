@@ -165,7 +165,8 @@ async function main() {
       switch (sub) {
         case 'list': {
           const params = new URLSearchParams()
-          if (args.status) params.set('filter[status]', args.status)
+          const state = args.state || args.status
+          if (state) params.set('filter[state]', state)
           const qs = params.toString()
           result = await api('GET', `/tasks${qs ? '?' + qs : ''}`)
           break
@@ -199,7 +200,7 @@ async function main() {
             get: 'accounts get --id <id>',
           },
           tasks: {
-            list: 'tasks list [--status <status>]',
+            list: 'tasks list [--state <pending|incomplete|complete>] (--status is an alias)',
           },
         }
       }
