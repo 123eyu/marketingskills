@@ -327,10 +327,10 @@ accounts still needs a scheduling tool. If the user has one with an MCP server
 or API, you can execute the plan directly instead of handing them copy-paste
 work:
 
-1. **Check what's connected.** Ask the user what they schedule with. Tools with
-   MCP servers (e.g., [Marky](https://www.mymarky.ai/agents)) expose
-   create/schedule/publish as agent tools; others (Buffer, Typefully) have APIs
-   you can call from a script.
+1. **Check what's connected.** Ask the user what they schedule with. Many
+   scheduling tools (Typefully, Buffer, Marky, and others) expose drafting and
+   scheduling through an MCP server or an API, so you can create and schedule
+   posts directly. Check the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md) for guides.
 2. **Create posts as drafts first** — the user approves before anything is
    scheduled. Never auto-publish without an explicit go-ahead.
 3. **Schedule per the calendar you built** (spacing and platform rules from
