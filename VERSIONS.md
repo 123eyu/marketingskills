@@ -57,6 +57,11 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.11.16 (2026-10-02)
+
+- **OpenAI Codex plugin** (#445 by @darkweb19, closes #295): `.codex-plugin/plugin.json` plus a marketplace at `.agents/plugins/marketplace.json`. Install with `codex plugin marketplace add coreyhaines31/marketingskills`, then `/plugins`, and update with `codex plugin marketplace upgrade`. It uses the Codex compatibility layout OpenAI's plugin creator scaffolds. `scripts/check-versions.mjs` now requires the Codex manifest's version to match the repo version so the two can't drift.
+- **Non-interactive installs** (#339 by @SilviaMogas): the README notes that `/plugin` only works in an interactive Claude Code session, and gives `npx skills` and the `claude plugin marketplace add` / `claude plugin install` CLI commands as alternatives.
+
 ### 2.11.15 (2026-10-02)
 
 Four community contributions folded into existing skills instead of becoming new skills. Each original PR is merged with its author's commits.
