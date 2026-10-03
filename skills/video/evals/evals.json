@@ -38,7 +38,7 @@
         "Provides structured video prompt example",
         "Follows Subject + Action + Camera + Style + Mood pattern",
         "Warns about common prompt mistakes",
-        "Notes Sora reliability caveats"
+        "Notes that Sora 2 and the Videos API were shut down (Sept 2026) and doesn't recommend them"
       ],
       "files": []
     },

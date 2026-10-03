@@ -5,11 +5,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.9.1 | 2026-10-02 |
-| ai-seo | 2.7.1 | 2026-10-02 |
+| ad-creative | 2.9.2 | 2026-10-02 |
+| ai-seo | 2.7.2 | 2026-10-02 |
 | analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
-| attribution | 1.1.1 | 2026-10-02 |
+| attribution | 1.1.2 | 2026-10-02 |
 | churn-prevention | 2.0.1 | 2026-10-02 |
 | co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.1.0 | 2026-10-02 |
@@ -25,8 +25,8 @@ Current versions of all skills. Agents can compare against local versions to che
 | emails | 2.1.1 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
-| image | 2.0.1 | 2026-05-18 |
-| influencer-marketing | 1.1.1 | 2026-10-02 |
+| image | 2.0.2 | 2026-10-02 |
+| influencer-marketing | 1.1.2 | 2026-10-02 |
 | launch | 2.0.3 | 2026-10-02 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
@@ -36,13 +36,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.2 | 2026-10-02 |
+| ads | 2.4.3 | 2026-10-02 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.2 | 2026-10-02 |
 | product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
-| prospecting | 1.1.1 | 2026-10-02 |
+| prospecting | 1.1.2 | 2026-10-02 |
 | public-relations | 1.1.2 | 2026-10-02 |
 | referrals | 2.0.2 | 2026-10-02 |
 | revops | 2.0.1 | 2026-10-02 |
@@ -53,9 +53,19 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.1 | 2026-10-02 |
 | social | 2.3.1 | 2026-10-02 |
-| video | 2.1.1 | 2026-10-02 |
+| video | 2.1.2 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.13 (2026-10-02)
+
+Community content fixes. Lands #595, #572, #508, #401, and #481 with contributor credit.
+
+- **Sora and GPT Image deprecations** (#595 by @MeowdyAGENT, closes #594): removes Sora 2 recommendations (OpenAI shut down Sora 2 and the Videos API on 24 Sep 2026) and updates image-model guidance. The model names now follow OpenAI's deprecations page: `gpt-image-1` retires 23 Oct 2026, with `gpt-image-2.5-sunburst` and `gpt-image-2.5-flare` as the replacements. Also fixes a broken link. ad-creative 2.9.2, image 2.0.2, video 2.1.2; the video eval now expects the shutdown rather than "reliability caveats."
+- **Search vs training crawlers** (#572 by @wonderwomancode, closes #599): ai-seo no longer treats GPTBot, ClaudeBot, and Google-Extended as citation bots. Discovery, user retrieval, training, and grounding are decided separately, with a valid robots.txt example. The author's own tool link was replaced with vendor docs. ai-seo 2.7.2.
+- **Attribution model availability** (#508 by @UberVero, closes #507): retired Google Ads/GA4 rule-based models, DDA volume, Calendly UTMs, MTA bias, and triangulated overrides. attribution 1.1.2, influencer-marketing 1.1.2.
+- **Brand vs non-brand** (#401 by @mharnett): optimize Google Ads on non-brand ROAS and report blended separately. ads 2.4.3.
+- **Typo** (#481 by @tim703223-glitch): "Pre-Seed/Seed" in saas-prospecting. prospecting 1.1.2.
 
 ### 2.11.12 (2026-10-02)
 
