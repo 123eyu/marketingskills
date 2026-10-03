@@ -130,7 +130,7 @@ Narration clips usually run 3-7 seconds, while actions take 1.5-2 seconds. With 
 
 ### `Secure; SameSite=None` cookies are rejected over HTTP
 
-Chromium won't set `Secure` cookies on plain HTTP, so the session never sticks and every navigation bounces to login. Either switch the session cookie to `SameSite=Lax` for the recording run (often an env flag) or serve HTTPS with a self-signed cert and `ignoreHTTPSErrors: true`.
+Browsers won't set `Secure` cookies over plain HTTP on a non-localhost host (for example a LAN IP or a custom dev domain), so the session never sticks and every navigation bounces to login. `http://localhost` is usually treated as secure and is fine. Otherwise, either drop the `Secure` flag for the recording run (`SameSite=None` requires `Secure`, so switch to `SameSite=Lax` at the same time; often an env flag), or serve HTTPS with a self-signed cert and `ignoreHTTPSErrors: true`.
 
 ### Strict CSP blocks the overlay
 
@@ -161,7 +161,7 @@ Narration reuses the subtitle captions as the script.
 3. **Narrate the title card** with a one-sentence intro in the same voice.
 4. **Mux with ffmpeg** — delay each clip to its subtitle offset (`adelay`), push back any clip that would overlap the previous one, mix with `amix`, and pad the video tail (`tpad=stop_mode=clone`) if audio runs past the visuals.
 
-**API keys:** the TTS key belongs in an environment variable (e.g. `ELEVENLABS_API_KEY`) or a secret manager, loaded by the script at runtime. Never ask the user to paste a key into chat, and never write one into the repo or a committed `.env` file. If the key isn't set, tell the user which variable to set in their own shell and fall back to a silent recording in the meantime.
+**API keys:** the TTS key belongs in an environment variable (e.g. `ELEVENLABS_API_KEY`) or a secret manager, loaded by the script at runtime. Never ask the user to paste a key into chat, and never write one into the repo or a committed `.env` file. If the key isn't set, tell the user which variable to set in their own shell and fall back to a silent recording in the meantime. If a user pastes a key into chat anyway, don't use it: tell them to rotate it, since chat logs aren't a safe place for secrets.
 
 ## Delivery Checklist
 

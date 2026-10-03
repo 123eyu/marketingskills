@@ -82,11 +82,12 @@ Put each method's result side by side for the same layer (usually SOM or SAM):
 | Method | SOM estimate (Year 1) | Key assumption | Confidence |
 |---|---|---|---|
 | Bottom-up | $0.4M-$0.9M | 1-2% capture | Medium |
-| Search-led | $0.2M-$0.4M | 10-20% click share | Medium |
+| Search-led | $0.2M-$0.4M (search channel only) | 10-20% click share | Medium |
 | Channel-led | ~$0.45M | $80 CPL holds at scale | Low |
 
 How to read the comparison:
-- **Estimates overlap** → the overlap is your working range. Here, roughly $0.4M-$0.5M.
+- **Compare like with like.** The search-led figure covers one channel, so it's a floor for SOM rather than a competing estimate. Here, bottom-up and channel-led agree around $0.4M-$0.5M, and search alone gets about halfway there, which is consistent.
+- **Estimates overlap** → the overlap is your working range.
 - **Estimates differ by more than ~3×** → one assumption is broken. Find it before presenting any number.
 - **Bottom-up far exceeds channel-led** → demand exists but the plan can't reach it yet. That points to a budget or channel constraint, which belongs in Section 10 (funding-stage unlocks).
 - **Channel-led far exceeds bottom-up** → the reachable-buyer count is probably too low, or the channel assumptions are optimistic.

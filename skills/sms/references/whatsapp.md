@@ -16,7 +16,7 @@ WhatsApp is the default messaging app in most of Latin America, Europe, Africa, 
 | Customers mostly in the US | **SMS** | Meta does not currently deliver marketing templates to US (+1) numbers |
 | Rich product messages (images, buttons, lists) | **WhatsApp** | Native interactive formats, no MMS surcharge |
 | Two-way sales or support conversations | **WhatsApp** | Threaded chat, reply buttons, human handoff |
-| Paid social is a major acquisition channel | **WhatsApp** | Click-to-WhatsApp ads open a free 72-hour window |
+| Paid social is a major acquisition channel | **WhatsApp** | Click-to-WhatsApp ads open a free window |
 | Simple one-way alerts, auth codes, US-heavy list | **SMS** | Simpler setup, universal reach |
 | Multi-country program | **Both** | WhatsApp where adoption is high, SMS as fallback |
 
@@ -67,11 +67,7 @@ Rules that trip people up:
 
 ## Opt-In and Opt-Out
 
-Meta requires opt-in before you message someone. The opt-in must:
-
-1. Clearly state the person is opting in to receive messages **on WhatsApp**
-2. Clearly name **your business**
-3. Comply with local law (GDPR, LGPD, India's DPDP Act, TCPA, and so on)
+Meta requires opt-in before you message someone. The opt-in should clearly tell the person they'll get messages from **your business**, and it must comply with local law (GDPR, LGPD, India's DPDP Act, TCPA, and so on). Meta allows a general business opt-in, but naming WhatsApp explicitly is the safer practice and what many laws effectively expect, so do it unless you have a reason not to.
 
 You can collect it through a website form, checkout checkbox, SMS, IVR, in person, or inside a WhatsApp chat. Meta recommends separate opt-ins (or one opt-in that names the categories) for order updates vs offers.
 
@@ -126,7 +122,7 @@ Meta also caps how many marketing templates **one person** receives from all bus
 
 ### Warming up a new number
 
-1. Get business verification done first so you start at 2,000
+1. Get business verification done first. It makes the account eligible to scale toward 2,000, but Meta still approves or denies the increase after a quality review, so check the actual limit before scheduling sends
 2. Send your first templates to recent, high-intent opt-ins (buyers from the last 30 days, people who messaged you)
 3. Scale volume over 1-2 weeks as the number stays green
 4. Spread big sends over hours instead of firing everything at once
@@ -162,8 +158,8 @@ Meta moved from conversation-based pricing to **per-message pricing on July 1, 2
 |--------------|-----------------|
 | **Marketing template** | Charged on every delivery, inside or outside a service window |
 | **Utility template** | Charged outside a window. Inside an open window it was free from July 1, 2025 until **October 1, 2026**, when Meta began charging for it |
-| **Authentication template** | Charged outside a window |
-| **Service message** (free-form reply) | Free from November 1, 2024. Charged per message from **October 1, 2026**, at the same rate as utility/authentication in that market, no volume tiers |
+| **Authentication template** | Charged per delivery; check the current rate card for in-window treatment in your market |
+| **Service message** (free-form reply) | Free from November 1, 2024. From **October 1, 2026**, each business phone number gets **1,000 free service messages a month** (no rollover); after that, they're charged per message at the same rate as utility/authentication in that market, with no volume tiers |
 | **Meta Business Agent** (Meta's AI agent) | Charged per token from August 1, 2026, about $2 per 1M tokens. Never free |
 | **Anything in a free entry point window** | Free (see below) |
 
@@ -171,7 +167,7 @@ Meta moved from conversation-based pricing to **per-message pricing on July 1, 2
 
 **Practical math**: rates differ a lot by country. Marketing is the most expensive category in every market, often several times the utility rate. Pull current rates from Meta's rate cards (or your BSP's, which include their markup) and model cost per recovered order before launching a flow.
 
-The October 2026 changes mean support conversations and in-window order updates now cost money. If your old business case assumed "replies are free," redo it.
+The October 2026 changes mean support conversations beyond the first 1,000 a month per number, and in-window order updates, now cost money. If your old business case assumed "replies are free," redo it.
 
 ---
 
@@ -179,14 +175,14 @@ The October 2026 changes mean support conversations and in-window order updates 
 
 Click-to-WhatsApp (CTWA) ads run on Facebook and Instagram and open a WhatsApp chat with your business when tapped.
 
-**Free entry point window**: when someone messages you from a CTWA ad or a Facebook Page call-to-action button, and you reply within 24 hours, a **72-hour free window** opens. Inside it, Meta doesn't charge for marketing, utility, authentication, or service messages (Meta Business Agent messages are still charged). Meta confirmed this window is unchanged by the October 2026 pricing update.
+**Free entry point window**: when someone messages you from a CTWA ad or a Facebook Page call-to-action button and you reply within 24 hours, a free entry point window opens from the time you respond. Meta says it may stay open for up to 7 days (as of 2026-10). While it's open, Meta doesn't charge for marketing, utility, authentication, or service messages; Meta Business Agent messages are still charged. Check the window's actual expiry in your delivery data rather than assuming the maximum.
 
 How to use it:
 
 1. **Hook the ad on a reason to chat**: a quiz, sizing help, a quote, a code to claim
 2. **Pre-fill the user's first message**: "Hi! I'd like my 15% welcome code."
 3. **Reply fast with buttons**: 2-3 qualifying questions as reply buttons
-4. **Convert or hand off inside 72 hours**: checkout link, booking link, or a live rep
+4. **Convert or hand off while the free window is open**: checkout link, booking link, or a live rep
 5. **Ask for marketing opt-in in the chat** so you can follow up with templates later
 
 ---
