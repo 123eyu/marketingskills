@@ -2,6 +2,8 @@
 
 Pay-per-call access to 1,000+ paid data API endpoints from 20+ providers via a single key. Provides agent-native access to SEO, search, enrichment, email-finding, and scraping vendors that otherwise each need their own account, plan, or minimum deposit.
 
+> **Disclosure:** this guide was contributed by a member of the Glasser team. Glasser is a young product (CLI first published September 2026), so confirm coverage, pricing, and each provider's terms before relying on it.
+
 ## Capabilities
 
 | Integration | Available | Notes |
@@ -25,7 +27,7 @@ Glasser is an **alternative integration method**, not a replacement. Follow the 
 | Scenario | Use |
 |----------|-----|
 | Keyword volume or a SERP snapshot for an audit, no DataForSEO account | Glasser (`dataforseo`, `serper`) |
-| Backlink or domain-rating check without an Ahrefs plan | Glasser (`ahrefs`, `semrush`, `serpstat`) |
+| Occasional backlink or domain-rating checks without your own SEO tool subscription | Glasser (`ahrefs`, `semrush`, `serpstat`), if its per-call access fits the provider's terms for your use |
 | Work email for one prospect, no Hunter or Apollo account | Glasser (`hunter`, `leadmagic`, `prospeo`) |
 | Firmographics, tech stack, and job openings for a competitor set | Glasser (`pdl`, `builtwith`, `predictleads`) |
 | What people say on TikTok, Reddit, Xiaohongshu, or Douyin about a category | Glasser (`scrapecreators`, `tikhub`) |
