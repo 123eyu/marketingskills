@@ -141,7 +141,7 @@ User-triggered fetchers such as `ChatGPT-User`, `Claude-User`, and `Perplexity-U
 
 Verify the current names and consequences in the vendors' maintained documentation: [OpenAI](https://developers.openai.com/api/docs/bots), [Perplexity](https://docs.perplexity.ai/docs/resources/perplexity-crawlers), [Anthropic](https://privacy.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), and [Google](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers).
 
-For implementation, inspect `/robots.txt` manually first. Optional helpers include vendor testing tools and the [open-source AI Crawler Access Reference](https://github.com/alternatefutures/ai-crawler-access-reference), which includes a deterministic policy generator and is maintained by this contribution's author.
+For implementation, inspect `/robots.txt` manually first. Optional helpers include each vendor's own crawler documentation and robots.txt testing tools.
 
 ---
 
