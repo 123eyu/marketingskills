@@ -5,11 +5,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.9.1 | 2026-10-02 |
-| ai-seo | 2.7.1 | 2026-10-02 |
+| ad-creative | 2.9.2 | 2026-10-02 |
+| ai-seo | 2.7.2 | 2026-10-02 |
 | analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
-| attribution | 1.1.1 | 2026-10-02 |
+| attribution | 1.1.2 | 2026-10-02 |
 | churn-prevention | 2.0.1 | 2026-10-02 |
 | co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.1.0 | 2026-10-02 |
@@ -25,8 +25,8 @@ Current versions of all skills. Agents can compare against local versions to che
 | emails | 2.1.1 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
-| image | 2.0.1 | 2026-05-18 |
-| influencer-marketing | 1.1.1 | 2026-10-02 |
+| image | 2.0.2 | 2026-10-02 |
+| influencer-marketing | 1.1.2 | 2026-10-02 |
 | launch | 2.0.3 | 2026-10-02 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
@@ -36,13 +36,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.2 | 2026-10-02 |
+| ads | 2.4.3 | 2026-10-02 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.2 | 2026-10-02 |
 | product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
-| prospecting | 1.1.1 | 2026-10-02 |
+| prospecting | 1.1.2 | 2026-10-02 |
 | public-relations | 1.1.2 | 2026-10-02 |
 | referrals | 2.0.2 | 2026-10-02 |
 | revops | 2.0.1 | 2026-10-02 |
@@ -53,9 +53,19 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.1 | 2026-10-02 |
 | social | 2.3.1 | 2026-10-02 |
-| video | 2.1.1 | 2026-10-02 |
+| video | 2.1.2 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.13 (2026-10-02)
+
+Community content fixes. Lands #595, #572, #508, #401, and #481 with contributor credit.
+
+- **Sora and GPT Image deprecations** (#595 by @MeowdyAGENT, closes #594): removes Sora 2 recommendations (OpenAI shut down Sora 2 and the Videos API on 24 Sep 2026) and updates image-model guidance. The model names now follow OpenAI's deprecations page: `gpt-image-1` retires 23 Oct 2026, with `gpt-image-2.5-sunburst` and `gpt-image-2.5-flare` as the replacements. Also fixes a broken link. ad-creative 2.9.2, image 2.0.2, video 2.1.2; the video eval now expects the shutdown rather than "reliability caveats."
+- **Search vs training crawlers** (#572 by @wonderwomancode, closes #599): ai-seo no longer treats GPTBot, ClaudeBot, and Google-Extended as citation bots. Discovery, user retrieval, training, and grounding are decided separately, with a valid robots.txt example. The author's own tool link was replaced with vendor docs. ai-seo 2.7.2.
+- **Attribution model availability** (#508 by @UberVero, closes #507): retired Google Ads/GA4 rule-based models, DDA volume, Calendly UTMs, MTA bias, and triangulated overrides. attribution 1.1.2, influencer-marketing 1.1.2.
+- **Brand vs non-brand** (#401 by @mharnett): optimize Google Ads on non-brand ROAS and report blended separately. ads 2.4.3.
+- **Typo** (#481 by @tim703223-glitch): "Pre-Seed/Seed" in saas-prospecting. prospecting 1.1.2.
 
 ### 2.11.12 (2026-10-02)
 
@@ -146,6 +156,7 @@ Evidence discipline for the three skills that make claims about competitors. Com
 ### 2.11.1 (2026-09-04)
 
 - **ai-seo** (2.4.0 → 2.5.0): new `references/format-volatility.md` — the citation-*format* volatility axis, companion to agent-readiness.md's citation-*source* volatility. Anchored on the **ChatGPT 5.6 format shift** (Aug 2026, Peec AI data via Tomek Rudzki and Lily Ray): fan-out queries dropped the "vs / comparison / top / best / reviews" modifiers while `site:` and "official" searches surged, and citations by page type fell −50.5% for listicles (15.77% → 7.80%) and −32.1% for comparison pages (9.08% → 6.17%) — the two formats companies scaled for GEO, demoted in one release. Covers what changes (stop justifying scaled listicle/comparison production with "wins AI citations"; owned "official" pages rising as the citable class) and what doesn't (comparisons still convert humans and still earn citations on Google AIO / Gemini / Perplexity — a per-platform format table replaces one-size-fits-all advice). Adds **LinkedIn as a citation surface** from LinkedIn's own AEO guide (via Chris Long, platform-reported: most-cited outlet for professional searches; Articles out-cite Posts ~60/40; first words of a post become the URL slug — front-load the target phrase), a **DIY ChatGPT fan-out extraction** diagnostic (DevTools → network payload → literal background queries; explicitly warned against as a mass-generation content-spam input), and a **measurement-rigor** section (AI answers are non-deterministic: 3–5 runs per query, mention *rate* with sample size, rates-over-time not run-vs-run, technical/comprehension/trust cause split; framing credited to Initial Commit's AEO audit skill, Josh Pigford). SKILL.md: Content Types section rewritten around the volatility (stale ~33%-comparison-share table retired to context), ChatGPT fan-out + extraction pointer added to the fan-out section, LinkedIn added to the Presence pillar, non-determinism rule added to DIY monitoring, new triggers ('do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'AI citation format shift'). New eval (id 10) covers the scaled-comparison-roadmap prompt that must get the 5.6 pushback plus the one-run-anecdote measurement correction.
+
 
 ### 2.11.0 (2026-08-23)
 
