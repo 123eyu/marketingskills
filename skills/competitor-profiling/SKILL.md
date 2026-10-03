@@ -32,9 +32,9 @@ This skill supports two data source stacks. Check which MCPs are active before s
 | Stack | Scraping | SEO & Market Data | When to use |
 |---|---|---|---|
 | **Primary** | Firecrawl MCP | DataForSEO MCP | Preferred — richer data, site mapping, structured extraction |
-| **Alternative** | WebFetch (built-in) | Ubersuggest MCP | When Firecrawl or DataForSEO are unavailable |
+| **Alternative** | WebFetch (built-in) | Whatever SEO data source is connected: Ahrefs or Semrush MCP, Ubersuggest MCP, or similar | When Firecrawl or DataForSEO are unavailable |
 
-If neither Firecrawl nor DataForSEO is available but Ubersuggest MCP is, use the alternative stack — it covers all core profile fields. If nothing is available, note the gap and proceed with qualitative observations only.
+If neither Firecrawl nor DataForSEO is available but another SEO data source is, use the alternative stack; most cover the core profile fields. If no SEO data source is available, mark those metrics unavailable (never estimate them) and proceed with qualitative observations only.
 
 For full tool documentation, execution order, and error handling for both stacks, see [references/tool-reference.md](references/tool-reference.md).
 
@@ -159,7 +159,7 @@ Save each scraped review page to `competitor-profiles/raw/<competitor-slug>/<YYY
 
 ### Phase 2: SEO & Market Data (DataForSEO or Ubersuggest)
 
-Use DataForSEO MCP tools to gather quantitative competitive intelligence. **If DataForSEO is unavailable**, use Ubersuggest MCP as a drop-in alternative — it covers domain traffic, keyword rankings, backlinks, referring domains, top pages, and organic competitors. See [references/tool-reference.md](references/tool-reference.md) for the full tool mapping and execution order. Save each raw response as JSON to `competitor-profiles/raw/<competitor-slug>/<YYYY-MM-DD>/seo/<endpoint-name>.json` before parsing it into the profile. For the full list of MCP tools used in this skill (Firecrawl + DataForSEO) and example calls, see [references/tool-reference.md](references/tool-reference.md).
+Use DataForSEO MCP tools to gather quantitative competitive intelligence. **If DataForSEO is unavailable**, use whichever SEO data source is connected (Ahrefs or Semrush MCP, Ubersuggest MCP, or similar). Most cover domain traffic, keyword rankings, backlinks, referring domains, top pages, and organic competitors. [references/tool-reference.md](references/tool-reference.md) maps the Ubersuggest tools as a worked example. Save each raw response as JSON to `competitor-profiles/raw/<competitor-slug>/<YYYY-MM-DD>/seo/<endpoint-name>.json` before parsing it into the profile. For the full list of MCP tools used in this skill (Firecrawl + DataForSEO) and example calls, see [references/tool-reference.md](references/tool-reference.md).
 
 #### Domain Authority & Backlinks
 

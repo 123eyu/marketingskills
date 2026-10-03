@@ -180,9 +180,9 @@ Quick reference for the Firecrawl and DataForSEO MCP tools used in competitor pr
 
 ---
 
-## Alternative Stack: Ubersuggest MCP + WebFetch
+## Alternative Stack: Another SEO Data Source + WebFetch
 
-If Firecrawl or DataForSEO are not available, use **Ubersuggest MCP** (for SEO and market data) and **WebFetch** (for page scraping). Coverage is slightly less comprehensive — no site mapping, no structured extraction, no technology detection — but sufficient for quick scans and most competitive profiling needs.
+If Firecrawl or DataForSEO are not available, use whichever SEO data source is connected (Ahrefs or Semrush MCP, Ubersuggest MCP, or similar) for SEO and market data, and **WebFetch** for page scraping. The tool mapping below uses Ubersuggest MCP as the worked example; the same fields map onto the others. Coverage is slightly less comprehensive — no site mapping, no structured extraction, no technology detection — but sufficient for quick scans and most competitive profiling needs.
 
 ### When to use each stack
 
