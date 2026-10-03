@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 const API_KEY = process.env.FIRECRAWL_API_KEY
+const rawArgs = process.argv.slice(2)
 const BASE_URL = 'https://api.firecrawl.dev'
 
-if (!API_KEY) {
+if (!API_KEY && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'FIRECRAWL_API_KEY environment variable required' }))
   process.exit(1)
 }
@@ -52,7 +53,7 @@ function list(val) {
   return val.split(',').map(s => s.trim()).filter(Boolean)
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, ...rest] = args._
 
 async function main() {
