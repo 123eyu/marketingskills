@@ -437,3 +437,4 @@ Only ask if not answered by context or input:
 - **sales-enablement**: For turning profiles into battle cards and sales collateral
 - **ads**: For analyzing competitor ad strategies
 - **pricing**: For deeper pricing analysis informed by competitor profiles
+- **marketing-plan**: For sizing the market (TAM/SAM/SOM) with its market-sizing reference, including competitor-led estimates

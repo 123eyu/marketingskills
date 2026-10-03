@@ -305,3 +305,4 @@ Don't ask all five at once — lead with #1 and #2, then follow up as needed.
 | Translating customer research into an ICP for outbound | `prospecting` |
 | Planning content based on discovered topics | `content-strategy` |
 | Rolling research into a comprehensive marketing plan | `marketing-plan` |
+| Sizing the market (TAM/SAM/SOM) — see the market-sizing reference | `marketing-plan` |
