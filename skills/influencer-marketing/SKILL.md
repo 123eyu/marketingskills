@@ -127,7 +127,7 @@ Influencer marketing suffers from attribution gaps — fix them upfront, before 
 - **Unique promo codes** (e.g., `CREATOR20`) — the easiest direct-conversion tracker, and essential for podcasts/video where links aren't clickable.
 - **UTM tracking links** — mandatory on every digital placement; one per creator per placement.
 - **Vanity / dedicated landing pages** — `yourdomain.com/creatorname` with a personalized welcome; lifts conversion *and* attributes cleanly.
-- **Post-purchase survey** — "How did you hear about us?" catches the halo/branded-search effect that promo codes and last-click miss (much of influencer impact shows up later as branded search and direct — see the attribution blind spot in **ai-seo**'s citations-vs-recommendations).
+- **Post-purchase survey** — "How did you hear about us?" catches the halo/branded-search effect that promo codes and last-click miss (much of influencer impact shows up later as branded search and direct — see **attribution** for the blind-spot framework; **ai-seo** when the discovery path was AI search).
 - **Whitelisting performance** — when you repurpose creator content as ads, that ad's own metrics are a clean read on the creative's real pull.
 
 Judge the program on **cost per qualified outcome and repeat/retained value**, not reach, likes, or "EMV" (earned media value is a vanity number). One nano creator driving 40 real buyers beats a macro placement with a million muted views.
@@ -197,5 +197,6 @@ Dedicated creator-discovery/CRM platforms (e.g., Modash, GRIN, Aspire, Upfluence
 - **ad-creative** — repurpose creator content into paid ads (whitelisting); creative review page for sign-off
 - **cold-email** — the creator outreach itself (personalization, deliverability, follow-up)
 - **customer-research** — find existing advocates and ground the talking points
-- **ai-seo** — the branded-search/direct attribution blind spot that hides influencer impact
+- **attribution** — reconciling promo-code / UTM / survey / platform numbers; branded-search and direct blind spots that hide influencer impact
+- **ai-seo** — when discovery happened in AI search (citations vs. recommendations)
 - **social** — organic content strategy the partnerships plug into
