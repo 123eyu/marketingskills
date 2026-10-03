@@ -51,6 +51,26 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function reportDate() {
+  const date = args.date === undefined ? new Date().toISOString().slice(0, 10) : args.date
+  if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    throw new Error('--date must be a valid YYYY-MM-DD calendar date')
+  }
+  const parsed = new Date(`${date}T00:00:00Z`)
+  if (!Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) {
+    throw new Error('--date must be a valid YYYY-MM-DD calendar date')
+  }
+  return date
+}
+
+function reportSelect(defaultColumns) {
+  if (args.select === undefined) return defaultColumns
+  if (typeof args.select !== 'string' || !args.select.split(',').every(column => column.trim())) {
+    throw new Error('--select must be a comma-separated list of nonempty columns')
+  }
+  return args.select
+}
+
 async function main() {
   let result
   const mode = args.mode || 'domain'
@@ -60,7 +80,7 @@ async function main() {
       switch (sub) {
         case 'get': {
           if (!args.target) { result = { error: '--target required (domain)' }; break }
-          const params = new URLSearchParams({ target: args.target })
+          const params = new URLSearchParams({ target: args.target, date: reportDate() })
           result = await api('GET', `/site-explorer/domain-rating?${params}`)
           break
         }
@@ -101,7 +121,7 @@ async function main() {
       switch (sub) {
         case 'organic': {
           if (!args.target) { result = { error: '--target required (domain or URL)' }; break }
-          const params = new URLSearchParams({ target: args.target, mode })
+          const params = new URLSearchParams({ target: args.target, mode, date: reportDate(), select: reportSelect('keyword,volume,best_position,sum_traffic,best_position_url') })
           if (args.country) params.set('country', args.country)
           if (args.limit) params.set('limit', args.limit)
           result = await api('GET', `/site-explorer/organic-keywords?${params}`)
@@ -116,7 +136,7 @@ async function main() {
       switch (sub) {
         case 'list': {
           if (!args.target) { result = { error: '--target required (domain or URL)' }; break }
-          const params = new URLSearchParams({ target: args.target, mode })
+          const params = new URLSearchParams({ target: args.target, mode, date: reportDate(), select: reportSelect('url,sum_traffic,keywords,top_keyword') })
           if (args.country) params.set('country', args.country)
           if (args.limit) params.set('limit', args.limit)
           result = await api('GET', `/site-explorer/top-pages?${params}`)
@@ -171,11 +191,11 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          'domain-rating': 'domain-rating get --target <domain>',
+          'domain-rating': 'domain-rating get --target <domain> [--date <YYYY-MM-DD>]',
           'backlinks': 'backlinks list --target <domain> [--mode <mode>] [--limit <n>]',
           'refdomains': 'refdomains list --target <domain> [--mode <mode>] [--limit <n>]',
-          'keywords': 'keywords organic --target <domain> [--country <cc>] [--limit <n>]',
-          'top-pages': 'top-pages list --target <domain> [--country <cc>] [--limit <n>]',
+          'keywords': 'keywords organic --target <domain> [--date <YYYY-MM-DD>] [--select <columns>] [--country <cc>] [--limit <n>]',
+          'top-pages': 'top-pages list --target <domain> [--date <YYYY-MM-DD>] [--select <columns>] [--country <cc>] [--limit <n>]',
           'keyword-overview': 'keyword-overview get --keywords <kw1,kw2> [--country <cc>]',
           'keyword-suggestions': 'keyword-suggestions get --keyword <keyword> [--country <cc>] [--limit <n>]',
           'serp': 'serp get --keyword <keyword> [--country <cc>]',

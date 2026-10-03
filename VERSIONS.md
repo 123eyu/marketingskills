@@ -14,7 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.1.0 | 2026-10-02 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.1.0 | 2026-10-01 |
+| competitor-profiling | 2.1.1 | 2026-10-02 |
 | competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.2 | 2026-10-02 |
 | copy-editing | 2.1.0 | 2026-10-02 |
@@ -52,10 +52,21 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.1 | 2026-10-02 |
-| social | 2.3.1 | 2026-10-02 |
+| social | 2.3.2 | 2026-10-02 |
 | video | 2.1.2 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.14 (2026-10-02)
+
+Community tool and guide contributions. Lands #642, #400, #586, #366, #461, and #397 with contributor credit.
+
+- **Ahrefs CLI v3 parameters** (#642 by @rudycelekli): sends the `date` and `select` parameters Ahrefs v3 requires. Both now default (today's date, Ahrefs' documented keyword and top-page columns) instead of being mandatory, and the tests moved to `tests/clis/`.
+- **Firecrawl CLI and v2 docs** (#400 by @rakshith48): a new zero-dependency Firecrawl CLI on the v2 API, with competitor-profiling's tool reference updated to v2 (structured extraction is now JSON mode on scrape). It shows usage without credentials like the other CLIs.
+- **Glasser integration guide** (#586 by @adriansurething): a pay-per-call data API broker, now with an in-guide maker disclosure and provider-access claims framed as subject to each provider's terms.
+- **Alternative stack for competitor-profiling** (#366 by @4thoughtmarketing-mktg): WebFetch plus whichever SEO data source is connected (Ahrefs or Semrush MCP, Ubersuggest, or similar) when Firecrawl or DataForSEO is unavailable. Missing metrics are marked unavailable, never estimated.
+- **Publishing from your agent** (#461 by @josiahcoad): a draft-first, approval-gated workflow for scheduling posts through a connected tool. The tool list is neutral, and the Typefully claim is corrected.
+- **X algorithm reference** (#397 by @benjaminard): how xAI's open-sourced For You ranker scores posts, with each rule tagged verified or reported.
 
 ### 2.11.13 (2026-10-02)
 
