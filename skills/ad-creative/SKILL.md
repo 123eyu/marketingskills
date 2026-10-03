@@ -164,7 +164,7 @@ For detailed specs and format variations, see [references/platform-specs.md](ref
 For image and video generation tools, see [references/generative-tools.md](references/generative-tools.md) for the complete guide covering:
 
 - **Image generation** — Nano Banana Pro (Gemini), Flux, Ideogram for static ad images
-- **Video generation** — Veo, Kling, Runway, Sora, Seedance, Higgsfield for video ads
+- **Video generation** — Veo, Kling, Runway, Seedance, Higgsfield for video ads
 - **Voice & audio** — ElevenLabs, OpenAI TTS, Cartesia for voiceovers, cloning, multilingual
 - **Code-based video** — Remotion for templated, data-driven video at scale
 - **Platform image specs** — Correct dimensions for every ad placement
