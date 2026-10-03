@@ -14,13 +14,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.1.0 | 2026-10-02 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.1.1 | 2026-10-02 |
+| competitor-profiling | 2.1.2 | 2026-10-02 |
 | competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.2 | 2026-10-02 |
 | copy-editing | 2.1.0 | 2026-10-02 |
 | copywriting | 2.1.0 | 2026-10-02 |
 | cro | 2.0.0 | 2026-05-05 |
-| customer-research | 2.0.3 | 2026-10-02 |
+| customer-research | 2.0.4 | 2026-10-02 |
 | directory-submissions | 2.1.0 | 2026-10-02 |
 | emails | 2.1.1 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
@@ -32,7 +32,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
 | marketing-loops | 1.2.1 | 2026-10-02 |
-| marketing-plan | 1.1.2 | 2026-10-02 |
+| marketing-plan | 1.2.0 | 2026-10-02 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
@@ -43,7 +43,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
 | prospecting | 1.1.2 | 2026-10-02 |
-| public-relations | 1.1.2 | 2026-10-02 |
+| public-relations | 1.2.0 | 2026-10-02 |
 | referrals | 2.0.2 | 2026-10-02 |
 | revops | 2.0.1 | 2026-10-02 |
 | sales-enablement | 2.3.2 | 2026-10-02 |
@@ -51,11 +51,20 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
-| sms | 1.0.1 | 2026-10-02 |
+| sms | 1.1.0 | 2026-10-02 |
 | social | 2.3.2 | 2026-10-02 |
-| video | 2.1.2 | 2026-10-02 |
+| video | 2.2.0 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.15 (2026-10-02)
+
+Four community contributions folded into existing skills instead of becoming new skills. Each original PR is merged with its author's commits.
+
+- **public-relations** (1.1.2 → 1.2.0): crisis communications from #381 by @fyscleaning-jpg. New `references/crisis-communications.md` (severity tiers 1–4, a first-60-minutes checklist, channel order, playbooks by crisis type, what not to do) and `references/statement-templates.md` (7 templates). Adds a "When Something Goes Wrong" section and crisis triggers. Anything with legal, regulatory, or safety exposure loops in counsel before fault is admitted. New eval.
+- **sms** (1.0.1 → 1.1.0): WhatsApp from #516 by @Inflimity. New `references/whatsapp.md`: WhatsApp vs SMS (incl. Meta not delivering marketing templates to US numbers), the 24-hour window, template categories, opt-in, quality rating, and business-level messaging limits. Pricing is rebuilt from Meta's docs: per-message since July 2025, and in-window utility and service messages charged from 1 Oct 2026. Also covers click-to-WhatsApp ads and the 72-hour free window, plus four playbooks. WhatsApp triggers added. New eval.
+- **marketing-plan** (1.1.2 → 1.2.0): market sizing from #418 by @imMamdouhaboammar. New `references/market-sizing.md`: TAM/SAM/SOM, four triangulated methods (bottom-up, search-led, competitor-led, channel-led), confidence labels, ranges with assumptions, and a 10-factor attractiveness scorecard. Linked from the market-quality gate. Market-sizing triggers added. New eval. customer-research (2.0.3 → 2.0.4) and competitor-profiling (2.1.1 → 2.1.2) point to it.
+- **video** (2.1.2 → 2.2.0): product demo recording from #345 by @klepfish. New `references/product-demo-recording.md`: a Playwright recording workflow, step modes, and local-app gotchas. The contributor's scripts are linked at their commit rather than vendored, and narration API keys stay out of chat. Demo-recording triggers added. New eval.
 
 ### 2.11.14 (2026-10-02)
 
