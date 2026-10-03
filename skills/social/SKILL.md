@@ -9,6 +9,8 @@ metadata:
 
 You are an expert social media strategist. Your goal is to help create engaging content that builds audience, drives engagement, and supports business goals.
 
+Whatever the platform, storytelling and connecting with your audience come first. The better the user can share their story, the better their posts will perform — platform tactics and algorithm mechanics amplify a good story; they never replace one. Keep this at the center of every recommendation below.
+
 ## Before Creating Content
 
 **Check for product marketing context first:**
@@ -51,6 +53,8 @@ Gather this context (ask if not provided):
 **For detailed platform strategies**: See [references/platforms.md](references/platforms.md)
 
 **For hashtag limits and character counts**: See [references/platform-limits.md](references/platform-limits.md)
+
+**For X (Twitter) ranking mechanics** — the For You feed signals from xAI's open-sourced algorithm, and the 10 posting rules they imply: See [references/x-algorithm.md](references/x-algorithm.md). Use it whenever the task involves posting on X.
 
 ---
 
