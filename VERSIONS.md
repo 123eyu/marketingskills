@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.9.2 | 2026-10-02 |
+| ad-creative | 2.9.3 | 2026-10-02 |
 | ai-seo | 2.7.2 | 2026-10-02 |
 | analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
@@ -53,9 +53,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.1.0 | 2026-10-02 |
 | social | 2.3.2 | 2026-10-02 |
-| video | 2.2.0 | 2026-10-02 |
+| video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.17 (2026-10-02)
+
+- **video** (2.2.0 → 2.2.1) and the **Hyperframes integration guide** (reported in #600 by @pjthegiant): the old example called a `render({ frames })` API that the `hyperframes` package doesn't export. Both now lead with the CLI (`npx hyperframes init`, `preview`, `render -o output.mp4`) and explain the composition format: a root with `data-composition-id`, `class="clip"` elements with timing attributes, and a paused GSAP timeline. Rendering from code goes through `@hyperframes/producer` (`createRenderJob` + `executeRenderJob`). Checked against v0.8.114.
+- **ad-creative** (2.9.2 → 2.9.3): three creative-review template fixes (reported in #592 by @antongulin). Malformed data now shows a clear error instead of a blank page. The concept switcher uses `aria-pressed` buttons instead of incomplete tab semantics. The Instagram like count comes from an optional `likes` field, where it used to be a hardcoded 6,240.
 
 ### 2.11.16 (2026-10-02)
 
