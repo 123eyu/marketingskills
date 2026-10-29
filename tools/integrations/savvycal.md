@@ -62,7 +62,7 @@ POST https://api.savvycal.com/v1/links
 
 Creates the link in the current user's personal scope. Only `name` is required. `type` is `recurring` (Multi-Use) or `single` (Single-Use). Durations and availability aren't API fields; set them in SavvyCal or through the MCP server.
 
-To create a link in a team scope:
+To create a link in a team scope, pass the team's slug (or `personal`):
 
 ```bash
 POST https://api.savvycal.com/v1/scopes/{scope_slug}/links
@@ -85,6 +85,8 @@ Accepts the same fields as create: `name`, `slug`, `description`, `private_name`
 ```bash
 DELETE https://api.savvycal.com/v1/links/{link_id}
 ```
+
+Returns the link with state `deleted`.
 
 ### Duplicate a scheduling link
 
@@ -120,6 +122,8 @@ GET https://api.savvycal.com/v1/events?period=upcoming&state=confirmed
 GET https://api.savvycal.com/v1/events/{event_id}
 ```
 
+`event_id` can be the event's `id` or `uuid`.
+
 ### Create an event
 
 ```bash
@@ -134,7 +138,7 @@ POST https://api.savvycal.com/v1/links/{link_id}/events
 }
 ```
 
-`start_at` and `end_at` must match an available slot from the slots endpoint. Optional fields:
+`start_at` and `end_at` must match an available slot from the slots endpoint. The link must be active and editable by the current user, or the request returns `404`. Optional fields:
 
 - `phone_number` - E.164 format, like `+15555555555` (required if the link always gathers a phone number)
 - `fields` - Answers to the link's custom fields, each with the field's `id`, `type`, and `label`, plus `value` (text fields) or `options` (choice fields)
@@ -160,7 +164,7 @@ POST https://api.savvycal.com/v1/events/{event_id}/cancel
 }
 ```
 
-`cancel_reason` is optional. Returns `404` if the event is already canceled or can't be canceled.
+`cancel_reason` is optional (up to 1,500 characters). Returns `404` if the event is already canceled or can't be canceled.
 
 ### List webhooks
 
@@ -178,7 +182,7 @@ POST https://api.savvycal.com/v1/webhooks
 }
 ```
 
-A webhook receives every event type; there's no per-webhook filter. Types include `event.created`, `event.requested`, `event.approved`, `event.declined`, `event.rescheduled`, `event.changed`, `event.canceled`, `event.checkout.*`, `event.attendee.*`, `poll.response.*`, and `workflow.action.triggered`. Payloads are signed with an HMAC-SHA256 of the body in the `x-savvycal-signature` header, using the webhook's `secret`. See [Webhooks](https://docs.savvycal.com/developers/webhooks).
+A webhook receives every event type; there's no per-webhook filter. Types include `event.created`, `event.requested`, `event.approved`, `event.declined`, `event.rescheduled`, `event.changed`, `event.canceled`, `event.checkout.*`, `event.attendee.*`, `poll.response.*`, and `workflow.action.triggered`. Each delivery has an `x-savvycal-signature` header of `sha256=` followed by the uppercase hex HMAC-SHA256 of the raw body, keyed with the webhook's `secret`. See [Webhooks](https://docs.savvycal.com/developers/webhooks).
 
 ### Get or delete a webhook
 
@@ -199,7 +203,7 @@ GET https://api.savvycal.com/v1/workflows/{workflow_id}/rules
 ### Scheduling Link Data
 - `id` - Unique link identifier
 - `name` / `private_name` - Public and internal names
-- `slug` - URL slug; the booking URL is `https://savvycal.com/{scope.slug}/{slug}`
+- `slug` - URL slug; the booking URL is `https://savvycal.com/{scope.slug}/{slug}` unless the scope uses a custom domain
 - `scope` - The personal or team scope (`id`, `name`, `slug`)
 - `durations` / `default_duration` - Meeting lengths in minutes
 - `state` - `active`, `pending`, `disabled`, or `archived`
@@ -224,6 +228,9 @@ GET https://api.savvycal.com/v1/workflows/{workflow_id}/rules
 - `before` / `after` - Cursors from `metadata.before` / `metadata.after` in the previous response; results are in `entries`
 
 ### List Events
+
+If any filter value is invalid, such as an unparseable date, every filter falls back to its default.
+
 - `period` - `upcoming` (default), `past`, `fixed`, or `all`
 - `from` / `until` - Date range (`YYYY-MM-DD`) when `period` is `fixed`
 - `time_zone` - Time zone for `from` and `until` (defaults to the user's)
@@ -236,7 +243,7 @@ GET https://api.savvycal.com/v1/workflows/{workflow_id}/rules
 ### List Scheduling Links
 - `state` - `active`, `pending`, `disabled`, or `archived` (defaults to all but archived)
 - `scope` - A scope ID
-- `q` - Search text (name, private name, description, slug)
+- `q` - Search text (name, private name, description, slug, scope slug)
 
 ### Get Available Time Slots
 - `from` - Start of the range (defaults to now)
