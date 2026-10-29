@@ -80,6 +80,7 @@ async function main() {
           params.set('limit', String(limit))
           if (args.after) params.set('after', args.after)
           if (args.before) params.set('before', args.before)
+          for (const key of ['state', 'scope', 'q']) if (args[key]) params.set(key, args[key])
           result = await api('GET', `/links?${params}`)
           break
         }
@@ -92,6 +93,7 @@ async function main() {
         case 'create': {
           const name = args.name
           if (!name) { result = { error: '--name required' }; break }
+          if (args.duration) { result = { error: 'Duration is not a SavvyCal API field. Set durations in SavvyCal or through its MCP server.' }; break }
           const body = { name }
           if (args.slug) body.slug = args.slug
           if (args.description) body.description = args.description
@@ -103,6 +105,7 @@ async function main() {
         case 'update': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
+          if (args.duration) { result = { error: 'Duration is not a SavvyCal API field. Set durations in SavvyCal or through its MCP server.' }; break }
           const body = {}
           if (args.name) body.name = args.name
           if (args.slug) body.slug = args.slug
@@ -152,6 +155,8 @@ async function main() {
           params.set('limit', String(limit))
           if (args.after) params.set('after', args.after)
           if (args.before) params.set('before', args.before)
+          for (const key of ['period', 'from', 'until', 'state', 'link', 'attendance', 'q', 'direction']) if (args[key]) params.set(key, args[key])
+          if (args['time-zone']) params.set('time_zone', args['time-zone'])
           result = await api('GET', `/events?${params}`)
           break
         }
@@ -224,8 +229,8 @@ async function main() {
         error: 'Unknown command',
         usage: {
           me: 'me',
-          links: 'links [list | get --id <id> | create --name <name> [--slug <slug>] [--description <text>] [--private-name <name>] [--type recurring|single] | update --id <id> | delete --id <id> | duplicate --id <id> | toggle --id <id> | slots --id <id> [--from <iso>] [--until <iso>]]',
-          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --end-at <iso> --time-zone <iana> --name <name> --email <email> | cancel --id <id> [--reason <text>]]',
+          links: 'links [list [--state <state>] [--scope <id>] [--q <text>] | get --id <id> | create --name <name> [--slug <slug>] [--description <text>] [--private-name <name>] [--type recurring|single] | update --id <id> | delete --id <id> | duplicate --id <id> | toggle --id <id> | slots --id <id> [--from <iso>] [--until <iso>]]',
+          events: 'events [list [--period upcoming|past|fixed|all] [--from <date>] [--until <date>] [--time-zone <iana>] [--state <state>] [--link <id>] [--attendance attending|any] [--q <text>] [--direction asc|desc] | get --id <id> | create --link-id <id> --start-at <iso> --end-at <iso> --time-zone <iana> --name <name> --email <email> | cancel --id <id> [--reason <text>]]',
           webhooks: 'webhooks [list | create --url <url> | delete --id <id>]',
           options: '--limit <n> --after <cursor> --before <cursor>',
         }

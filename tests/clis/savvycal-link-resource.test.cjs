@@ -45,3 +45,14 @@ test('event cancel sends the optional reason', () => {
 test('webhook create sends only the documented url', () => {
   output(run(['webhooks', 'create', '--url', 'https://example.com/hook'], "assert.equal(url,'https://api.savvycal.com/v1/webhooks');assert.equal(options.method,'POST');assert.deepEqual(JSON.parse(options.body),{url:'https://example.com/hook'})"))
 })
+test('link list sends the documented filters', () => {
+  output(run(['links', 'list', '--state', 'active', '--q', 'intro'], "assert.equal(url,'https://api.savvycal.com/v1/links?limit=20&state=active&q=intro')"))
+})
+test('event list sends the documented filters', () => {
+  output(run(['events', 'list', '--period', 'fixed', '--from', '2026-11-01', '--until', '2026-11-30', '--time-zone', 'America/Chicago', '--state', 'all'], "assert.equal(url,'https://api.savvycal.com/v1/events?limit=20&period=fixed&from=2026-11-01&until=2026-11-30&state=all&time_zone=America%2FChicago')"))
+})
+test('link create rejects duration instead of dropping it', () => {
+  const result = run(['links', 'create', '--name', 'Owned Meeting', '--duration', '30'], "throw new Error('unexpected request')")
+  assert.equal(result.status, 1)
+  assert.match(JSON.parse(result.stdout).error, /not a SavvyCal API field/)
+})
