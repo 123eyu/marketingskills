@@ -12,6 +12,8 @@ const cases = [
   { name: 'duplicate', args: ['links', 'duplicate', '--id', 'owned-link'], method: 'POST', resource: '/links/owned-link/duplicate' },
   { name: 'toggle', args: ['links', 'toggle', '--id', 'owned-link'], method: 'POST', resource: '/links/owned-link/toggle' },
   { name: 'slots', args: ['links', 'slots', '--id', 'owned-link'], method: 'GET', resource: '/links/owned-link/slots' },
+  { name: 'slots range', args: ['links', 'slots', '--id', 'owned-link', '--from', '2026-11-02T00:00:00Z', '--until', '2026-11-09T00:00:00Z'], method: 'GET', resource: '/links/owned-link/slots?from=2026-11-02T00%3A00%3A00Z&until=2026-11-09T00%3A00%3A00Z' },
+  { name: 'create with fields', args: ['links', 'create', '--name', 'Owned Meeting', '--slug', 'owned', '--description', 'Say hi', '--private-name', 'Internal', '--type', 'single'], method: 'POST', resource: '/links', body: { name: 'Owned Meeting', slug: 'owned', description: 'Say hi', private_name: 'Internal', type: 'single' } },
 ]
 function run(args, oracle) {
   const fixture = `global.fetch=async(url,options)=>{const assert=require('node:assert/strict');${oracle};return new Response(JSON.stringify({data:[{id:'owned-link'}],meta:{after:'next'}}),{status:200})};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
@@ -36,4 +38,10 @@ test('current-user discovery retains its existing resource', () => {
 })
 test('event reads retain their existing resource', () => {
   output(run(['events', 'get', '--id', 'owned-event'], "assert.equal(url,'https://api.savvycal.com/v1/events/owned-event');assert.equal(options.method,'GET')"))
+})
+test('event cancel sends the optional reason', () => {
+  output(run(['events', 'cancel', '--id', 'owned-event', '--reason', 'Conflict'], "assert.equal(url,'https://api.savvycal.com/v1/events/owned-event/cancel');assert.equal(options.method,'POST');assert.deepEqual(JSON.parse(options.body),{cancel_reason:'Conflict'})"))
+})
+test('webhook create sends only the documented url', () => {
+  output(run(['webhooks', 'create', '--url', 'https://example.com/hook'], "assert.equal(url,'https://api.savvycal.com/v1/webhooks');assert.equal(options.method,'POST');assert.deepEqual(JSON.parse(options.body),{url:'https://example.com/hook'})"))
 })

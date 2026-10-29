@@ -94,7 +94,9 @@ async function main() {
           if (!name) { result = { error: '--name required' }; break }
           const body = { name }
           if (args.slug) body.slug = args.slug
-          if (args.duration) body.duration_minutes = Number(args.duration)
+          if (args.description) body.description = args.description
+          if (args['private-name']) body.private_name = args['private-name']
+          if (args.type) body.type = args.type
           result = await api('POST', '/links', body)
           break
         }
@@ -104,7 +106,9 @@ async function main() {
           const body = {}
           if (args.name) body.name = args.name
           if (args.slug) body.slug = args.slug
-          if (args.duration) body.duration_minutes = Number(args.duration)
+          if (args.description) body.description = args.description
+          if (args['private-name']) body.private_name = args['private-name']
+          if (args.type) body.type = args.type
           result = await api('PATCH', `/links/${id}`, body)
           break
         }
@@ -130,8 +134,8 @@ async function main() {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
           const params = new URLSearchParams()
-          if (args['start-time']) params.set('start_time', args['start-time'])
-          if (args['end-time']) params.set('end_time', args['end-time'])
+          if (args.from) params.set('from', args.from)
+          if (args.until) params.set('until', args.until)
           const qs = params.toString()
           result = await api('GET', `/links/${id}/slots${qs ? '?' + qs : ''}`)
           break
@@ -180,7 +184,7 @@ async function main() {
         case 'cancel': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', `/events/${id}/cancel`)
+          result = await api('POST', `/events/${id}/cancel`, args.reason ? { cancel_reason: args.reason } : undefined)
           break
         }
         default:
@@ -200,9 +204,8 @@ async function main() {
         }
         case 'create': {
           const url = args.url
-          const events = args.events?.split(',')
-          if (!url || !events) { result = { error: '--url and --events (comma-separated) required' }; break }
-          result = await api('POST', '/webhooks', { url, events })
+          if (!url) { result = { error: '--url required' }; break }
+          result = await api('POST', '/webhooks', { url })
           break
         }
         case 'delete': {
@@ -221,9 +224,9 @@ async function main() {
         error: 'Unknown command',
         usage: {
           me: 'me',
-          links: 'links [list | get --id <id> | create --name <name> | update --id <id> | delete --id <id> | duplicate --id <id> | toggle --id <id> | slots --id <id>]',
-          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --end-at <iso> --time-zone <iana> --name <name> --email <email> | cancel --id <id>]',
-          webhooks: 'webhooks [list | create --url <url> --events <e1,e2> | delete --id <id>]',
+          links: 'links [list | get --id <id> | create --name <name> [--slug <slug>] [--description <text>] [--private-name <name>] [--type recurring|single] | update --id <id> | delete --id <id> | duplicate --id <id> | toggle --id <id> | slots --id <id> [--from <iso>] [--until <iso>]]',
+          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --end-at <iso> --time-zone <iana> --name <name> --email <email> | cancel --id <id> [--reason <text>]]',
+          webhooks: 'webhooks [list | create --url <url> | delete --id <id>]',
           options: '--limit <n> --after <cursor> --before <cursor>',
         }
       }
