@@ -45,3 +45,8 @@ test('event cancel sends the optional reason', () => {
 test('webhook create sends only the documented url', () => {
   output(run(['webhooks', 'create', '--url', 'https://example.com/hook'], "assert.equal(url,'https://api.savvycal.com/v1/webhooks');assert.equal(options.method,'POST');assert.deepEqual(JSON.parse(options.body),{url:'https://example.com/hook'})"))
 })
+test('link create rejects duration instead of dropping it', () => {
+  const result = run(['links', 'create', '--name', 'Owned Meeting', '--duration', '30'], "throw new Error('unexpected request')")
+  assert.equal(result.status, 1)
+  assert.match(JSON.parse(result.stdout).error, /not a SavvyCal API field/)
+})

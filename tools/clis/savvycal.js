@@ -92,6 +92,7 @@ async function main() {
         case 'create': {
           const name = args.name
           if (!name) { result = { error: '--name required' }; break }
+          if (args.duration) { result = { error: 'Duration is not a SavvyCal API field. Set durations in SavvyCal or through its MCP server.' }; break }
           const body = { name }
           if (args.slug) body.slug = args.slug
           if (args.description) body.description = args.description
@@ -103,6 +104,7 @@ async function main() {
         case 'update': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
+          if (args.duration) { result = { error: 'Duration is not a SavvyCal API field. Set durations in SavvyCal or through its MCP server.' }; break }
           const body = {}
           if (args.name) body.name = args.name
           if (args.slug) body.slug = args.slug
